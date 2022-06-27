@@ -1,6 +1,9 @@
 import React from 'react';
 
-const Navigation = ({isSearchOpen, setIsSearchOpen}) => {
+const Navigation = ({title, isSearchOpen, setIsSearchOpen}) => {
+
+    const search = () => {}
+
     return (
         <div>
             {/* Mobile navigation */}
@@ -11,7 +14,7 @@ const Navigation = ({isSearchOpen, setIsSearchOpen}) => {
                             <img src='img/logo.png' alt='Media Organiser Logo' className='w-full h-full'/>
                         </a>
                         <div>
-                            Welcome to Media Organiser
+                            {title}
                         </div>
                         <button onClick={() => setIsSearchOpen(!isSearchOpen)} className='p-2 border border-transparent rounded-xl hover:border-white focus:border-white'>
                             <i className="fa-solid fa-magnifying-glass"></i>
@@ -36,15 +39,20 @@ const Navigation = ({isSearchOpen, setIsSearchOpen}) => {
                 </div>
             </nav>
             {/* Laptop navigation */}
-            <div className='w-full bg-white py-4'>
-                <nav className='hidden max-w-7xl mx-auto px-4 lg:px-8 md:block'>
+            <div className='hidden w-full bg-white py-4 md:block'>
+                <nav className='max-w-7xl mx-auto px-4 flex justify-between lg:px-8'>
                     <div className='flex space-x-4 items-center'>
                         <a href='/' className='h-12'>
                             <img src='img/logo.png' alt='Media Organiser Logo' className='w-full h-full'/>
                         </a>
                         <div className='font-bold uppercase'>Media Org <br/><span className='text-xs font-normal'>by Whizzy Software</span></div>
                     </div>
-                    
+                    <form onSubmit={() => search()} className='flex space-x-4'>
+                        <input type='search' placeholder='Search' className='px-4 py-2 border rounded-lg'/>
+                        <button type='submit' className='p-2 border border-transparent rounded-xl hover:border-white focus:border-white'>
+                            <i className="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
                 </nav>
             </div>
         
