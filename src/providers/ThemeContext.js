@@ -3,7 +3,6 @@ import Footer from '../components/footer';
 
 //COMPONENTS
 import Navigation from '../components/navigation';
-import Dashboard from '../pages/dashboard';
 
 //DATA
 import Categories from './categoryData';
@@ -13,13 +12,13 @@ import Playlists from './playlistData';
 const ThemeContext = createContext();
 export const useThemeContext = () => useContext(ThemeContext);
 
-export default function ThemeProvider() {
+export default function ThemeProvider({children}) {
 
     const [categories, setCategories] = useState(Categories);
     const [playlists, setPlaylists] = useState(Playlists);
 
     const [isSearchOpen, setIsSearchOpen] = useState(false);
-    
+
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalType, setModalType] = useState('');
 
@@ -43,7 +42,7 @@ export default function ThemeProvider() {
         setPlaylists(newPlaylists);
     }
 
-    const values = {isSearchOpen, setIsSearchOpen, setIsModalOpen, setModalType}
+    const values = {categories, playlists, isSearchOpen, setIsSearchOpen, setIsModalOpen, setModalType}
 
     const setTitle = () => {
         //default (dashboard)
@@ -66,7 +65,8 @@ export default function ThemeProvider() {
             <div className='bg-gray-200 py-1'>
                 <div className='relative min-h-screen mx-1'>
                     <Navigation title={setTitle()} isSearchOpen={isSearchOpen} setIsSearchOpen={setIsSearchOpen}/>
-                    <Dashboard categories={categories} playlists={playlists} setIsModalOpen={setIsModalOpen} setModalType={setModalType}/>
+                    {/* <Dashboard categories={categories} playlists={playlists} setIsModalOpen={setIsModalOpen} setModalType={setModalType}/> */}
+                    {children}
                     <Footer/>
                 </div>
             </div>

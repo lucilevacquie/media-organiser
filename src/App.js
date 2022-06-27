@@ -4,8 +4,8 @@ import ThemeProvider from './providers/ThemeContext';
 
 //PAGES
 import Dashboard from './pages/dashboard';
-import Categories from './pages/categories';
-import Playlists from './pages/playlists';
+import Category from './pages/category';
+
 
 function App() {
   return (
@@ -13,8 +13,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Dashboard/>}/>
-          <Route path="/categories" element={<Categories />} />
-          <Route path="/playlists" element={<Playlists />} />
+          {/* categories/images */}
+          <Route path="/categories/images" element={<Category/>}/>
         </Routes>
       </Router>
     </ThemeProvider>

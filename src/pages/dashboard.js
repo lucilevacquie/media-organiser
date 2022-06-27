@@ -1,9 +1,12 @@
 import React from 'react';
+import { useThemeContext } from '../providers/ThemeContext';
 
 //COMPONENTS
 import Card from '../components/card';
 
-const Dashboard = ({categories, playlists, setIsModalOpen, setModalType}) => {
+const Dashboard = () => {
+
+    const {categories, playlists, setIsModalOpen, setModalType} = useThemeContext();
 
     return(
         <div className='relative max-w-7xl mx-auto px-4 lg:px-8'>
@@ -20,7 +23,7 @@ const Dashboard = ({categories, playlists, setIsModalOpen, setModalType}) => {
                     : 
                     <div className='mt-4 grid grid-cols-2 gap-4 md:flex md:space-x-8'>
                         {categories.map(category => (
-                            <Card name={category.name} nbOfFiles={category.nbOfFiles}/>
+                            <Card name={category.name} nbOfFiles={category.nbOfFiles} path={category.path}/>
                         ))}
                         <button onClick={() => (setIsModalOpen(true) && setModalType('category'))} className='hidden px-8 py-2 bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white text-2xl font-bold md:block'>+</button>
                     </div>
@@ -40,7 +43,7 @@ const Dashboard = ({categories, playlists, setIsModalOpen, setModalType}) => {
                     : 
                     <div className='mt-4 grid grid-cols-2 gap-4 md:flex md:space-x-8'>
                         {playlists.map(playlist => (
-                            <Card name={playlist.name} nbOfFiles={playlist.nbOfFiles}/>
+                            <Card name={playlist.name} nbOfFiles={playlist.nbOfFiles} path={playlist.path}/>
                         ))}
                         <button onClick={() => (setIsModalOpen(true) && setModalType('playlist'))} className='hidden px-8 py-2 bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white text-2xl font-bold md:block'>+</button>
                     </div>
