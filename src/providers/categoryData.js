@@ -1,23 +1,23 @@
 let Categories = [
     {
         name: 'Images',
-        nbOfFiles: 15,
-        path: 'categories/images'
+        numFiles: 15,
+        path: 'category/images'
     },
     {
         name: 'Documents',
-        nbOfFiles: 10,
-        path: 'categories/documents'
+        numFiles: 10,
+        path: 'category/documents'
     },
     {
         name: 'Videos',
-        nbOfFiles: 5,
-        path: 'categories/videos'
+        numFiles: 5,
+        path: 'category/videos'
     },
     {
         name: 'Audios',
-        nbOfFiles: 0,
-        path: 'categories/audios'
+        numFiles: 0,
+        path: 'category/audios'
     }
 ];
 

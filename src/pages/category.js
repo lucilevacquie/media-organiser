@@ -1,13 +1,13 @@
 import React from 'react';
-import { useThemeContext } from '../providers/ThemeContext';
+import { useParams } from 'react-router-dom';
 
 const Category = () => {
 
-    const {categories} = useThemeContext();
+    const { category } = useParams();
 
-    return(
-        <div>
-
+    return (
+        <div className='max-w-7xl mx-auto px-4 lg:px-8'>
+            hello {category}
         </div>
     )
 }

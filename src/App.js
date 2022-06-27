@@ -1,5 +1,5 @@
 import './App.css';
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ThemeProvider from './providers/ThemeContext';
 
 //PAGES
@@ -12,9 +12,8 @@ function App() {
     <ThemeProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<Dashboard/>}/>
-          {/* categories/images */}
-          <Route path="/categories/images" element={<Category/>}/>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/category/:category" element={<Category />} />
         </Routes>
       </Router>
     </ThemeProvider>
