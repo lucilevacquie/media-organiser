@@ -99,14 +99,14 @@ export default function ThemeProvider({ children }) {
         setIsEditModalOpen(false);
     };
     //Delete a category or playlist
-    const trashCategory = (categoryId) => {
+    const deleteCategory = (categoryId) => {
         const existingCategories = categories;
         delete existingCategories[categoryId];
         setCategories({...existingCategories});
 
         setIsDeleteModalOpen(false);
     };
-    const trashPlaylist = (playlistId) => {
+    const deletePlaylist = (playlistId) => {
         const existingPlaylists = playlists;
         delete existingPlaylists[playlistId];
         setPlaylists({...existingPlaylists});
@@ -174,7 +174,7 @@ export default function ThemeProvider({ children }) {
                                 <i className="fa-solid fa-xmark"></i>
                             </button>
                         </div>
-                        <button onClick={() => trashCategory()} className='mt-4 w-full py-2 px-4 text-center bg-red-600 rounded-xl text-white font-semibold'>Yes, I want to delete the category</button>
+                        <button onClick={() => deleteCategory()} className='mt-4 w-full py-2 px-4 text-center bg-red-600 rounded-xl text-white font-semibold'>Yes, I want to delete the category</button>
                         <button onClick={() => setIsDeleteModalOpen(false)} className='w-full py-2 px-4 text-center text-gray-500'>No, I want to keep it</button>
                     </div>
                 </div>
@@ -228,7 +228,7 @@ export default function ThemeProvider({ children }) {
                                 <i className="fa-solid fa-xmark"></i>
                             </button>
                         </div>
-                        <button onClick={() => trashPlaylist()} className='mt-4 w-full py-2 px-4 text-center bg-red-600 rounded-xl text-white font-semibold'>Yes, I want to delete the playlist</button>
+                        <button onClick={() => deletePlaylist()} className='mt-4 w-full py-2 px-4 text-center bg-red-600 rounded-xl text-white font-semibold'>Yes, I want to delete the playlist</button>
                         <button onClick={() => setIsDeleteModalOpen(false)} className='w-full py-2 px-4 text-center text-gray-500'>No, I want to keep it</button>
                     </div>
                 </div>
