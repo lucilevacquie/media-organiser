@@ -13,17 +13,20 @@ const Category = () => {
 
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [selectedItems, setSelectedItems] = useState([]);
 
-    const { categories, dataList, editCategory, deleteCategory } = useThemeContext();
+    const { categories, dataList, editCategory, deleteCategory, addItemToCategory } = useThemeContext();
 
     console.log(categories);
 
     const { name, items } = categories[id];
 
-    const onEditCategoryName = (event) => {
+    console.log(items)
+
+    const onEditCategoryName = event => {
         event.preventDefault();
         const fd = new FormData(event.target);
-        editCategory(id, fd.get('name'));
+        editCategory(id, null, fd.get('name'));
         setShowEditModal(false);
     }
 
@@ -31,6 +34,23 @@ const Category = () => {
         deleteCategory(id);
         setShowDeleteModal(false);
         navigate('/');
+    }
+
+    const onEditCategoryItems = event => {
+        event.preventDefault();
+        editCategory(id, selectedItems, null);
+        setSelectedItems([]);
+        navigate(`/category/${id}`);
+    };
+
+    const onSelectItem = (event, id) => {
+        if (event.target.checked && !selectedItems.includes(id)) {
+            setSelectedItems([...selectedItems, id]);
+        } else if (event.target.checked) {
+            const items = selectedItems;
+            items.splice(items.indexOf(id), 1);
+            selectedItems([...items]);
+        }
     }
 
     return (
@@ -79,11 +99,12 @@ const Category = () => {
                 {items.length === 0 ?
                     <div className='mt-8'>
                         <h3>{name} is empty. Select the file you want to add to {name}.</h3>
-                        <div className='mt-4 grid md:grid-cols-2 gap-4'>
+                        <form onSubmit={onEditCategoryItems} className='mt-4 grid md:grid-cols-2 gap-4'>
                             {dataList.map(file => (
-                                <FileCardSelect key={file.id} id={file.id} img={file.img} title={file.title} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} />
+                                <FileCardSelect onSelectItem={onSelectItem} key={file.id} id={file.id} img={file.img} title={file.title} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} />
                             ))}
-                        </div>
+                            <button type='submit'>Add to {name}</button>
+                        </form>
                     </div>
                     :
                     <div className='mt-8'>
