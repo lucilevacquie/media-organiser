@@ -13,7 +13,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/category/:category" element={<Category />} />
+          <Route path="/category/:id" element={<Category />} />
         </Routes>
       </Router>
     </ThemeProvider>

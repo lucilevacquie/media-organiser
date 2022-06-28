@@ -5,13 +5,54 @@ import { v4 as uuidv4 } from 'uuid';
 const minSize = 1;
 const maxSize = 7;
 
+
+const audioFileTypes = ['wav', 'mp3', 'aac', 'flac', 'alac', 'dsd']
+
+// const createFile = () => {
+//     const file = {
+//         id: uuidv4(),
+//         name: faker.random.words(),
+//         path: faker.system.filePath(),
+//         type: faker.system.fileExt(),
+//         comment: faker.lorem.text(),
+//         category: '',
+//         playlists: [],
+//         imgName: '',
+//         imgPath: '',
+//     }
+
+//     return file;
+// }
+
+// const files = [];
+
+// const data = () => {
+//     const numFiles = 100;
+    
+//     for(let i = 0 ; i > numFiles ; i++){
+//         files.push(createFile());
+//     }
+    
+//     return files;
+// }
+
+// files.forEach(file => {
+//     audioFileTypes.map(audioType => {
+//         if(file.type === audioType){
+//             return (
+//                 {...file,
+//                 artist: `${faker.name.firstName()} ${faker.name.lastName()}`,
+//                 title: faker.music.songName(),
+//                 genre: faker.music.genre()
+//                 }
+//             )
+//         }
+//     })
+// })
+
+
 //AUDIO FILES
-const audioFileTypes = {
-    wav: 'wav',
-    mp3: 'mp3',
-    ogg: 'ogg',
-    aac: 'aac',
-}
+
 const createAudioItem = () => {
     const fileType = audioFileTypes[Math.floor(Math.random() * 4)];
     const artist = `${faker.name.firstName()} ${faker.name.lastName()}`;
@@ -33,7 +74,7 @@ const createAudioItem = () => {
 }
 
 //IMAGES
-const imageFileTypes = ['jpg','png','bmp',]
+const imageFileTypes = ['jpg','png','bmp']
 
 const createImageItem = () => {
     const fileType = imageFileTypes[Math.floor(Math.random() * 3)];
@@ -117,9 +158,15 @@ const data = () => {
         videoItems.push(createVideoItem())
     }
 
-    console.log(videoItems)
+    // so with this now, you import it once, into <App /> then you let all the category components do their own sorting
+    // like: <Category categoryData={filterByType(data, audioFileTypes)} type="Audio" />
+    // const filterByType = (data, type) => data.filter(item => audioFileTypes.includes(item.type))
 
-    return { audioItems, imageItems, docItems, videoItems };
+    // and then for the "all data" category, just pass the data
+    // <Category categoryData={data} type="All" />
+    
+    return [ ...audioItems, ...imageItems, ...docItems, ...videoItems ];
+
 }
 
 export default data;
