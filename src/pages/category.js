@@ -7,6 +7,8 @@ import data from '../mockData';
 //COMPONENTS
 import AudioFileCard from '../components/audioFileCard';
 import ImageCard from '../components/imageFileCard';
+import DocCard from '../components/docFileCard';
+import VideoCard from '../components/videoFileCard';
 
 const Category = () => {
 
@@ -33,13 +35,13 @@ const Category = () => {
                 : category === 'videos' ?
                     <div className='mt-4 flex flex-col space-y-4'>
                         {videoItems.map(file => (
-                            <ImageCard key={file.id} title={file.title} artist={file.artist} genre={file.genre} size={file.size}/>
+                            <VideoCard key={file.id} title={file.title} img={file.img} artist={file.artist} path={file.path} duration={file.duration} size={file.size}/>
                         ))}
                     </div>
                 : category === 'documents' ?
                     <div className='mt-4 flex flex-col space-y-4'>
                         {docItems.map(file => (
-                            <ImageCard key={file.id} title={file.title} artist={file.artist} genre={file.genre} size={file.size}/>
+                            <DocCard key={file.id} title={file.title} path={file.path} fileType={file.fileType} size={file.size}/>
                         ))}
                     </div>
                 :

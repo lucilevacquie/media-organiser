@@ -54,20 +54,18 @@ const createImageItem = () => {
 }
 
 //DOCUMENTS
-const docFileTypes = {
-    pdf: 'pdf',
-    doc: 'doc',
-    html: 'html',
-    txt: 'txt',
-}
+const docFileTypes = ['pdf', 'doc', 'html', 'txt']
+
 const createDocItem = () => {
     const fileType = docFileTypes[Math.floor(Math.random() * 4)];
     const title = faker.random.words();
+    const size = Math.floor(Math.random()*(maxSize-minSize+1)+minSize)
 
     const docItem = {
         id: uuidv4(),
         title,
         fileType,
+        size,
         path: `D:/media/documents/${title.replaceAll(' ', '-')}`
     }
 
@@ -75,20 +73,24 @@ const createDocItem = () => {
 }
 
 //VIDEOS
-const videoFileTypes = {
-    aac: 'aac',
-    mp4: 'mp4',
-    wav: 'wav',
-    avi: 'avi',
-}
+const videoFileTypes = ['aac', 'mp4', 'wav', 'avi'];
+const minDuration = 1;
+const maxDuration = 10;
+
 const createVideoItem = () => {
     const fileType = videoFileTypes[Math.floor(Math.random() * 4)];
     const title = faker.random.words();
+    const img = faker.image.image(640, 480, true);
+    const size = Math.floor(Math.random()*(maxSize-minSize+1)+minSize);
+    const duration = Math.floor(Math.random()*(maxDuration-minDuration+1)+minDuration);
 
     const videoItem = {
         id: uuidv4(),
         title,
+        img,
         fileType,
+        size,
+        duration,
         path: `D:/media/videos/${title.replaceAll(' ', '-')}`
     }
 
@@ -115,7 +117,7 @@ const data = () => {
         videoItems.push(createVideoItem())
     }
 
-    console.log(imageItems)
+    console.log(videoItems)
 
     return { audioItems, imageItems, docItems, videoItems };
 }
