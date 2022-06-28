@@ -4,7 +4,7 @@ import React from 'react';
 import Logo from '../img/logo.png';
 import Background from '../img/background-img.jpeg';
 
-const Navigation = ({ title, isSearchOpen, setIsSearchOpen }) => {
+const Navigation = ({ isSearchOpen, setIsSearchOpen }) => {
 
     const search = () => { }
 
@@ -17,9 +17,7 @@ const Navigation = ({ title, isSearchOpen, setIsSearchOpen }) => {
                         <a href='/' className='h-8'>
                             <img src={Logo} alt='Media Organiser Logo' className='w-full h-full' />
                         </a>
-                        <div>
-                            {title}
-                        </div>
+                        <h1 className='font-bold'>Media Org</h1>
                         <button onClick={() => setIsSearchOpen(!isSearchOpen)} className='p-2 border border-transparent rounded-xl hover:border-white focus:border-white'>
                             <i className="fa-solid fa-magnifying-glass"></i>
                         </button>

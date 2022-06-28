@@ -22,22 +22,6 @@ export default function ThemeProvider({ children }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalType, setModalType] = useState('');
 
-    const setTitle = () => {
-        //default (dashboard)
-        let title = ''
-
-        if (window.location.pathname === 'categories') {
-            //if slug = categories -> 'Categories'
-            title = 'Categories'
-        } else if (window.location.pathname === 'playlists') {
-            //if slug = playlists -> 'Playlists'
-            title = 'Playlists'
-        } else {
-            title = 'Welcome to Media Org'
-        }
-        return title
-    };
-
     //Create new category / playlist
     const newObject = useRef({});
 
@@ -72,7 +56,7 @@ export default function ThemeProvider({ children }) {
         <ThemeContext.Provider value={values}>
             <div className='bg-gray-200 py-1'>
                 <div className='relative min-h-screen mx-1'>
-                    <Navigation title={setTitle()} isSearchOpen={isSearchOpen} setIsSearchOpen={setIsSearchOpen} />
+                    <Navigation isSearchOpen={isSearchOpen} setIsSearchOpen={setIsSearchOpen} />
                     {children}
                     <Footer />
                 </div>

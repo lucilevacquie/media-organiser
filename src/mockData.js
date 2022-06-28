@@ -2,6 +2,9 @@ import { faker } from '@faker-js/faker';
 
 import { v4 as uuidv4 } from 'uuid';
 
+const minSize = 1;
+const maxSize = 7;
+
 //AUDIO FILES
 const audioFileTypes = {
     wav: 'wav',
@@ -14,6 +17,7 @@ const createAudioItem = () => {
     const artist = `${faker.name.firstName()} ${faker.name.lastName()}`;
     const title = faker.music.songName();
     const genre = faker.music.genre();
+    const size = Math.floor(Math.random()*(maxSize-minSize+1)+minSize)
 
     const audioItem = {
         id: uuidv4(),
@@ -21,35 +25,29 @@ const createAudioItem = () => {
         artist,
         genre,
         fileType,
-        path: `D:/media/audio/${genre.toLowerCase()}/${artist[0].toLowerCase}/${artist.replaceAll(' ', '-')}_${title.replaceAll(' ', '-')}`
+        size,
+        path: `D:/media/audio/${genre.toLowerCase()}/${artist[0].toLowerCase}/${artist.replaceAll(' ', '-')}_${title.replaceAll(' ', '-')}.${fileType}`
     }
 
     return audioItem;
 }
 
 //IMAGES
-const imageFileTypes = {
-    jpg: 'jpg',
-    png: 'png',
-    bmp: 'bmp',
-}
-const imageCategories = {
-    abstract: 'abstract',
-    animals: 'animal',
-    food: 'food',
-    nature: 'nature',
-}
+const imageFileTypes = ['jpg','png','bmp',]
+
 const createImageItem = () => {
     const fileType = imageFileTypes[Math.floor(Math.random() * 3)];
-    const fileCategory = imageCategories[Math.floor(Math.random() * 4)];
-    const name = faker.music.songName();
+    const img = faker.image.image(640, 480, true);
+    const name = faker.random.words();
+    const size = Math.floor(Math.random()*(maxSize-minSize+1)+minSize)
 
     const imageItem = {
         id: uuidv4(),
+        img,
         name,
-        fileCategory,
         fileType,
-        path: `D:/media/images/${fileCategory}/${name.replaceAll(' ', '-')}`
+        size,
+        path: `D:/media/images/${name.replaceAll(' ', '-')}.${fileType}`
     }
 
     return imageItem;
@@ -97,15 +95,29 @@ const createVideoItem = () => {
     return videoItem;
 }
 
-export default () => {
+const data = () => {
     const itemCount = 25;
     const audioItems = [];
+    const imageItems = [];
+    const docItems = [];
+    const videoItems = [];
 
     for (let i = 0; i < itemCount; i++) {
         audioItems.push(createAudioItem())
     }
+    for (let i = 0; i < itemCount; i++) {
+        imageItems.push(createImageItem())
+    }
+    for (let i = 0; i < itemCount; i++) {
+        docItems.push(createDocItem())
+    }
+    for (let i = 0; i < itemCount; i++) {
+        videoItems.push(createVideoItem())
+    }
 
-    return audioItems;
+    console.log(imageItems)
 
-
+    return { audioItems, imageItems, docItems, videoItems };
 }
+
+export default data;
