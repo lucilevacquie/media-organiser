@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 //ASSETS
 import Logo from '../img/logo.png';
@@ -14,9 +15,9 @@ const Navigation = ({ isSearchOpen, setIsSearchOpen }) => {
             <nav className='relative z-20 w-full h-full bg-center rounded-xl md:hidden' style={{ backgroundImage: `url(${Background})` }}>
                 <div className='max-w-7xl mx-auto px-4 lg:px-8'>
                     <div className='flex items-center justify-between h-16 text-white'>
-                        <a href='/' className='h-8'>
+                        <Link to='/' className='h-8'>
                             <img src={Logo} alt='Media Organiser Logo' className='w-full h-full' />
-                        </a>
+                        </Link>
                         <h1 className='font-bold'>Media Org</h1>
                         <button onClick={() => setIsSearchOpen(!isSearchOpen)} className='p-2 border border-transparent rounded-xl hover:border-white focus:border-white'>
                             <i className="fa-solid fa-magnifying-glass"></i>
@@ -44,9 +45,9 @@ const Navigation = ({ isSearchOpen, setIsSearchOpen }) => {
             <div className='hidden w-full bg-white py-4 md:block'>
                 <nav className='max-w-7xl mx-auto px-4 flex justify-between lg:px-8'>
                     <div className='flex space-x-4 items-center'>
-                        <a href='/' className='h-12'>
+                        <Link to='/' className='h-12'>
                             <img src={Logo} alt='Media Organiser Logo' className='w-full h-full' />
-                        </a>
+                        </Link>
                         <div className='font-bold uppercase'>Media Org <br /><span className='text-xs font-normal'>by Whizzy Software</span></div>
                     </div>
                     <form onSubmit={() => search()} className='flex space-x-4'>

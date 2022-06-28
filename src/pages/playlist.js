@@ -14,21 +14,19 @@ const Category = () => {
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-    const { categories, dataList, editCategory, deleteCategory } = useThemeContext();
+    const { playlists, dataList, editPlaylist, deletePlaylist } = useThemeContext();
 
-    console.log(categories);
+    const { name, items } = playlists[id];
 
-    const { name, items } = categories[id];
-
-    const onEditCategoryName = (event) => {
+    const onEditPlaylistName = (event) => {
         event.preventDefault();
         const fd = new FormData(event.target);
-        editCategory(id, fd.get('name'));
+        editPlaylist(id, fd.get('name'));
         setShowEditModal(false);
     }
 
-    const onDeleteCategory = () => {
-        deleteCategory(id);
+    const onDeletePlaylist = () => {
+        deletePlaylist(id);
         setShowDeleteModal(false);
         navigate('/');
     }
@@ -38,13 +36,13 @@ const Category = () => {
             {showEditModal && (
                 <Modal>
                     <div className='flex justify-between'>
-                        <h3 className='font-bold'>Edit Category</h3>
+                        <h3 className='font-bold'>Edit playlist</h3>
                         <button onClick={() => setShowEditModal(false)}>
                             <i className="fa-solid fa-xmark"></i>
                         </button>
                     </div>
-                    <form onSubmit={onEditCategoryName} className='mt-4 flex flex-col space-y-2'>
-                        <label>Category name</label>
+                    <form onSubmit={onEditPlaylistName} className='mt-4 flex flex-col space-y-2'>
+                        <label>Playlist name</label>
                         <input type='text' name='name' className='py-2 px-4 border rounded-lg' />
                         <button type='submit' className='mt-4 w-full py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold'>Update</button>
                     </form>
@@ -53,12 +51,12 @@ const Category = () => {
             {showDeleteModal && (
                 <Modal>
                     <div className='flex justify-between'>
-                        <h3 className='font-bold'>Delete category</h3>
+                        <h3 className='font-bold'>Delete playlist</h3>
                         <button onClick={() => setShowDeleteModal(false)}>
                             <i className="fa-solid fa-xmark"></i>
                         </button>
                     </div>
-                    <button onClick={() => onDeleteCategory()} className='mt-4 w-full py-2 px-4 text-center bg-red-600 rounded-xl text-white font-semibold'>Yes, I want to delete the category</button>
+                    <button onClick={() => onDeletePlaylist()} className='mt-4 w-full py-2 px-4 text-center bg-red-600 rounded-xl text-white font-semibold'>Yes, I want to delete the playlist</button>
                     <button onClick={() => setShowDeleteModal(false)} className='w-full py-2 px-4 text-center text-gray-500'>No, I want to keep it</button>
                 </Modal>
             )}
@@ -68,11 +66,11 @@ const Category = () => {
                     <div className='flex space-x-2'>
                         <button onClick={() => setShowEditModal(true)} className='flex space-x-2 items-center text-xs text-white font-semibold px-4 py-2 bg-gradient-to-r from-lightBlue to-pink rounded-xl'>
                             <i className="fa-solid fa-pen-to-square"></i>
-                            <span className='hidden md:block'>Edit category</span>
+                            <span className='hidden md:block'>Edit playlist</span>
                         </button>
                         <button onClick={() => setShowDeleteModal(true)} className='flex space-x-2 items-center text-xs text-white font-semibold px-4 py-2 bg-gradient-to-r from-lightBlue to-pink rounded-xl'>
                             <i className="fa-solid fa-trash"></i>
-                            <span className='hidden md:block'>Delete category</span>
+                            <span className='hidden md:block'>Delete playlist</span>
                         </button>
                     </div>
                 </div>

@@ -5,18 +5,19 @@ import ThemeProvider from './providers/ThemeContext';
 //PAGES
 import Dashboard from './pages/dashboard';
 import Category from './pages/category';
+import Playlist from './pages/playlist';
 
-
-function App() {
+const App = () => {
   return (
-    <ThemeProvider>
-      <Router>
+    <Router>
+      <ThemeProvider>
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/category/:id" element={<Category />} />
+          <Route path="/playlist/:id" element={<Playlist />} />
         </Routes>
-      </Router>
-    </ThemeProvider>
+      </ThemeProvider>
+    </Router>
   );
 }
 
