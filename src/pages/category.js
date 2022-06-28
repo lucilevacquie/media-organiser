@@ -34,10 +34,10 @@ const Category = () => {
             </div>
             {items.length === 0 ? 
                 <div className='mt-8'>
-                    <h3>Select the file you want to add to {name}</h3>
+                    <h3>{name} is empty. Select the file you want to add to {name}.</h3>
                     <div className='mt-4 grid md:grid-cols-2 gap-4'>
                         {dataList.map(file => (
-                            <FileCard key={file.id} title={file.title} name={file.name} size={file.size} path={file.path}/>
+                            <FileCard key={file.id} id={file.id} title={file.title} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path}/>
                         ))}
                     </div>
                 </div>
