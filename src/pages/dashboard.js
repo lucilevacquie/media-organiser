@@ -87,8 +87,8 @@ const Dashboard = () => {
                             <button onClick={() => onClickCreateCategory()} className='hidden mt-4 px-8 py-2 bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white text-2xl font-bold md:block'>+ Create category</button>
                             :
                             <div className='mt-4 grid grid-col-2 md:grid-cols-5 gap-4'>
-                                {Object.keys(categories).map(key => (
-                                    <CategoryCard key={categories[key].id} id={categories[key].id} name={categories[key].name} />
+                                {Object.values(categories).map(category => (
+                                    <CategoryCard key={category.id} id={category.id} name={category.name} />
                                 ))}
                                 <button onClick={() => onClickCreateCategory()} className='hidden px-8 py-4 bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-bold md:block'>+ Create a category</button>
                             </div>
@@ -107,8 +107,8 @@ const Dashboard = () => {
                             <button onClick={() => onClickCreatePlaylist()} className='hidden mt-4 px-8 py-2 bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white text-2xl font-bold md:block'>+ Create playlist</button>
                             :
                             <div className='mt-4 grid grid-col-2 md:grid-cols-5 gap-4'>
-                                {Object.keys(playlists).map(key => (
-                                    <PlaylistCard key={playlists[key].id} id={playlists[key].id} name={playlists[key].name} />
+                                {Object.values(playlists).map(playlist => (
+                                    <PlaylistCard key={playlist.id} id={playlist.id} name={playlist.name} />
                                 ))}
                                 <button onClick={() => onClickCreatePlaylist()} className='hidden px-8 py-4 bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-bold md:block'>+ Create a playlist</button>
                             </div>
@@ -119,8 +119,8 @@ const Dashboard = () => {
                 <div className='mt-8'>
                     <h2 className='text-xl font-bold'>All Files</h2>
                     <div className='mt-4 grid md:grid-cols-2 gap-4'>
-                        {dataList.map(file => (
-                            <FileCard key={file.id} id={file.id} title={file.title} img={file.img} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} />
+                        {Object.values(dataList).map(file => (
+                            <FileCard key={file.id} id={file.id} title={file.title} img={file.img} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} comment={file.comment} />
                         ))}
                     </div>
                 </div>

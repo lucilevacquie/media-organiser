@@ -54,6 +54,12 @@ const Playlist = () => {
         return itemsSelected;
     }
 
+    const removeItem = (fileID) => {
+        const items = playlists[id].items;
+        items.splice(items.indexOf(fileID), 1);
+        editPlaylist(id, items, null);
+    }
+
     return (
         <>
             {showEditModal && (
@@ -102,8 +108,8 @@ const Playlist = () => {
                         <h3>{name} is empty. Select the file you want to add to {name}.</h3>
                         <form onSubmit={onEditPlaylistItems}>
                             <div className='mt-4 grid md:grid-cols-2 gap-4'>
-                                {dataList.map(file => (
-                                    <FileCardSelect onSelectItem={onSelectItem} key={file.id} id={file.id} img={file.img} title={file.title} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} />
+                                {Object.values(dataList).map(file => (
+                                    <FileCardSelect onSelectItem={onSelectItem} key={file.id} id={file.id} img={file.img} title={file.title} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} comment={file.comment} />
                                 ))}
                             </div>
                             <button type='submit' className='mt-4 w-1/3 py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold'>Add to {name}</button>
@@ -113,7 +119,7 @@ const Playlist = () => {
                     :
                     <div className='mt-8 grid md:grid-cols-2 gap-4'>
                         {displayItems().map(item => (
-                            <FileCard key={item.id} id={item.id} img={item.img} title={item.title} artist={item.artist} genre={item.genre} name={item.name} size={item.size} path={item.path} duration={item.duration} />
+                            <FileCard removeItem={removeItem} key={item.id} id={item.id} img={item.img} title={item.title} artist={item.artist} genre={item.genre} name={item.name} size={item.size} path={item.path} duration={item.duration} comment={item.comment} />
                         ))}
                     </div>
                 }

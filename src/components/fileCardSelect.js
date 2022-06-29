@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FileCardSelect = ({ id, img, name, title, artist, genre, size, path, duration, onSelectItem }) => {
+const FileCardSelect = ({ id, img, name, title, artist, genre, size, path, duration, onSelectItem, comment }) => {
 
     return (
         <div className='w-full bg-white rounded-xl flex flex-col justify-between text-left shadow-xl hover:shadow-2xl focus:shadow-2xl'>
@@ -23,6 +23,7 @@ const FileCardSelect = ({ id, img, name, title, artist, genre, size, path, durat
                     }
                     <p><span className='underline'>Path:</span> {path}</p>
                     <p><span className='underline'>Size:</span> {size}kB</p>
+                    <p><span className='underline'>Comment:</span> {comment}</p>
                 </div>
             </div>
             <div className='bg-blue-200 rounded-b-xl p-4'>

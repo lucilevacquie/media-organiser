@@ -1,5 +1,4 @@
-import React, { createContext, useContext, useRef, useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 //COMPONENTS
@@ -13,16 +12,17 @@ const ThemeContext = createContext();
 export const useThemeContext = () => useContext(ThemeContext);
 
 export default function ThemeProvider({ children }) {
+
     const [categories, setCategories] = useState(getCategories());
     useEffect(() => { putCategories(categories) }, [categories]);
 
     const [playlists, setPlaylists] = useState(getPlaylists());
     useEffect(() => { putPlaylists(playlists) }, [playlists]);
 
-    const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [dataList, setDataList] = useState(getData());
+    useEffect(() => { putData(dataList) }, []);
 
-    const dataList = useRef(getData());
-    useEffect(() => { putData(dataList.current) }, []);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
 
     //Create a new category
     const createCategory = (newName) => {
@@ -101,7 +101,17 @@ export default function ThemeProvider({ children }) {
         })
     }
 
-    const values = { addItemToCategory, addItemToPlaylist, dataList: dataList.current, categories, playlists, isSearchOpen, setIsSearchOpen, createCategory, editCategory, deleteCategory, createPlaylist, editPlaylist, deletePlaylist };
+    //Edit comment from media files
+    const editComment = (id, newComment) => {
+        const existingMediaFile = dataList[id];
+        existingMediaFile.comment = newComment;
+        setDataList({
+            ...dataList,
+            [existingMediaFile.id]: existingMediaFile
+        })
+    };
+
+    const values = { editComment, addItemToCategory, addItemToPlaylist, dataList, categories, playlists, isSearchOpen, setIsSearchOpen, createCategory, editCategory, deleteCategory, createPlaylist, editPlaylist, deletePlaylist };
 
     return (
         <ThemeContext.Provider value={values}>
