@@ -15,13 +15,9 @@ const Category = () => {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [selectedItems, setSelectedItems] = useState([]);
 
-    const { categories, dataList, editCategory, deleteCategory, addItemToCategory } = useThemeContext();
-
-    console.log(categories);
+    const { categories, dataList, editCategory, deleteCategory } = useThemeContext();
 
     const { name, items } = categories[id];
-
-    console.log(items)
 
     const onEditCategoryName = event => {
         event.preventDefault();
@@ -53,12 +49,17 @@ const Category = () => {
         }
     }
 
+    const displayItems = () => {
+        const itemsSelected = dataList.filter(item => items.includes(item.id))
+        return itemsSelected;
+    }
+
     return (
         <>
             {showEditModal && (
                 <Modal>
                     <div className='flex justify-between'>
-                        <h3 className='font-bold'>Edit Category</h3>
+                        <h3 className='font-bold'>Edit category</h3>
                         <button onClick={() => setShowEditModal(false)}>
                             <i className="fa-solid fa-xmark"></i>
                         </button>
@@ -99,18 +100,22 @@ const Category = () => {
                 {items.length === 0 ?
                     <div className='mt-8'>
                         <h3>{name} is empty. Select the file you want to add to {name}.</h3>
-                        <form onSubmit={onEditCategoryItems} className='mt-4 grid md:grid-cols-2 gap-4'>
-                            {dataList.map(file => (
-                                <FileCardSelect onSelectItem={onSelectItem} key={file.id} id={file.id} img={file.img} title={file.title} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} />
-                            ))}
-                            <button type='submit'>Add to {name}</button>
+                        <form onSubmit={onEditCategoryItems}>
+                            <div className='mt-4 grid md:grid-cols-2 gap-4'>
+                                {dataList.map(file => (
+                                    <FileCardSelect onSelectItem={onSelectItem} key={file.id} id={file.id} img={file.img} title={file.title} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} />
+                                ))}
+                            </div>
+                            <button type='submit' className='mt-4 w-1/3 py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold'>Add to {name}</button>
                         </form>
                     </div>
                     :
                     <div className='mt-8'>
-                        {items.map(item => (
-                            <FileCard key={item.id} id={item.id} img={item.img} title={item.title} artist={item.artist} genre={item.genre} name={item.name} size={item.size} path={item.path} duration={item.duration} />
-                        ))}
+                        <div className='mt-4 grid md:grid-cols-2 gap-4'>
+                            {displayItems().map(item => (
+                                <FileCard key={item.id} id={item.id} img={item.img} title={item.title} artist={item.artist} genre={item.genre} name={item.name} size={item.size} path={item.path} duration={item.duration} />
+                            ))}
+                        </div>
                     </div>
                 }
             </div>

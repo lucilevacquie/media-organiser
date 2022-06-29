@@ -1,6 +1,5 @@
 import data from './mockData'
 
-
 export function putCategories(category) {
     return localStorage.setItem('categories', JSON.stringify(category))
 }

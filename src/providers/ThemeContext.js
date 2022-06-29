@@ -13,8 +13,6 @@ const ThemeContext = createContext();
 export const useThemeContext = () => useContext(ThemeContext);
 
 export default function ThemeProvider({ children }) {
-    const { id } = useParams();
-
     const [categories, setCategories] = useState(getCategories());
     useEffect(() => { putCategories(categories) }, [categories]);
 
@@ -63,9 +61,10 @@ export default function ThemeProvider({ children }) {
         })
     };
     //Edit a playlist
-    const editPlaylist = (id, newName) => {
+    const editPlaylist = (id, items, newName) => {
         const existingPlaylist = playlists[id];
-        existingPlaylist.name = newName;
+        existingPlaylist.name = newName || existingPlaylist.name;
+        existingPlaylist.items = items || existingPlaylist.items;
         setPlaylists({
             ...playlists,
             [existingPlaylist.id]: existingPlaylist

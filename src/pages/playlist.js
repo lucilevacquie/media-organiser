@@ -7,12 +7,13 @@ import FileCardSelect from '../components/fileCardSelect';
 import FileCard from '../components/fileCard';
 import Modal from '../components/modal';
 
-const Category = () => {
+const Playlist = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [selectedItems, setSelectedItems] = useState([]);
 
     const { playlists, dataList, editPlaylist, deletePlaylist } = useThemeContext();
 
@@ -21,7 +22,7 @@ const Category = () => {
     const onEditPlaylistName = (event) => {
         event.preventDefault();
         const fd = new FormData(event.target);
-        editPlaylist(id, fd.get('name'));
+        editPlaylist(id, null, fd.get('name'));
         setShowEditModal(false);
     }
 
@@ -29,6 +30,28 @@ const Category = () => {
         deletePlaylist(id);
         setShowDeleteModal(false);
         navigate('/');
+    }
+
+    const onEditPlaylistItems = event => {
+        event.preventDefault();
+        editPlaylist(id, selectedItems, null);
+        setSelectedItems([]);
+        navigate(`/playlist/${id}`);
+    };
+
+    const onSelectItem = (event, id) => {
+        if (event.target.checked && !selectedItems.includes(id)) {
+            setSelectedItems([...selectedItems, id]);
+        } else if (event.target.checked) {
+            const items = selectedItems;
+            items.splice(items.indexOf(id), 1);
+            selectedItems([...items]);
+        }
+    }
+
+    const displayItems = () => {
+        const itemsSelected = dataList.filter(item => items.includes(item.id))
+        return itemsSelected;
     }
 
     return (
@@ -77,15 +100,19 @@ const Category = () => {
                 {items.length === 0 ?
                     <div className='mt-8'>
                         <h3>{name} is empty. Select the file you want to add to {name}.</h3>
-                        <div className='mt-4 grid md:grid-cols-2 gap-4'>
-                            {dataList.map(file => (
-                                <FileCardSelect key={file.id} id={file.id} img={file.img} title={file.title} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} />
-                            ))}
-                        </div>
+                        <form onSubmit={onEditPlaylistItems}>
+                            <div className='mt-4 grid md:grid-cols-2 gap-4'>
+                                {dataList.map(file => (
+                                    <FileCardSelect onSelectItem={onSelectItem} key={file.id} id={file.id} img={file.img} title={file.title} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} />
+                                ))}
+                            </div>
+                            <button type='submit' className='mt-4 w-1/3 py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold'>Add to {name}</button>
+                        </form>
+
                     </div>
                     :
-                    <div className='mt-8'>
-                        {items.map(item => (
+                    <div className='mt-8 grid md:grid-cols-2 gap-4'>
+                        {displayItems().map(item => (
                             <FileCard key={item.id} id={item.id} img={item.img} title={item.title} artist={item.artist} genre={item.genre} name={item.name} size={item.size} path={item.path} duration={item.duration} />
                         ))}
                     </div>
@@ -95,4 +122,4 @@ const Category = () => {
     )
 }
 
-export default Category;
+export default Playlist;

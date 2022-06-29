@@ -3,8 +3,8 @@ import React from 'react';
 const FileCardSelect = ({ id, img, name, title, artist, genre, size, path, duration, onSelectItem }) => {
 
     return (
-        <div className='w-full text-left rounded-xl shadow-xl hover:shadow-2xl focus:shadow-2xl'>
-            <div className='p-4 bg-white rounded-t-xl flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0'>
+        <div className='w-full bg-white rounded-xl flex flex-col justify-between text-left shadow-xl hover:shadow-2xl focus:shadow-2xl'>
+            <div className='p-4 flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0'>
                 <div>
                     <img src={img} alt={name} />
                 </div>
