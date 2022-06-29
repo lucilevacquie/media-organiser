@@ -57,7 +57,6 @@ const Navigation = ({ isSearchOpen, setIsSearchOpen }) => {
                         </button>
                     </form>
                 </nav>
-                <button onClick={() => { window.localStorage.clear() }}>Clear localStorage</button>
             </div>
 
         </div>

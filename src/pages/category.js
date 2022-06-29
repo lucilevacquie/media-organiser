@@ -15,7 +15,7 @@ const Category = () => {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [selectedItems, setSelectedItems] = useState([]);
 
-    const { categories, dataList, editCategory, deleteCategory, editComment } = useThemeContext();
+    const { categories, dataList, editCategory, deleteCategory } = useThemeContext();
 
     const { name, items } = categories[id];
 
@@ -34,7 +34,7 @@ const Category = () => {
 
     const onEditCategoryItems = event => {
         event.preventDefault();
-        editCategory(id, selectedItems, null);
+        editCategory(id, [...items, ...selectedItems], null);
         setSelectedItems([]);
         navigate(`/category/${id}`);
     };
@@ -50,11 +50,17 @@ const Category = () => {
     }
 
     const displayItems = () => {
-        const itemsSelected = Object.values(dataList).filter(item => items.includes(item.id))
+        const itemsSelected = Object.values(dataList).filter(item => items.includes(item.id));
         return itemsSelected;
     }
 
-    const removeItem = (fileID) => {
+    const newDataList = () => {
+        const nonSelectedItems = Object.values(dataList).filter(item => !items.includes(item.id));
+        return nonSelectedItems;
+    }
+
+    const removeItem = (event, fileID) => {
+        event.stopPropagation();
         const items = categories[id].items;
         items.splice(items.indexOf(fileID), 1);
         editCategory(id, items, null);
@@ -122,6 +128,18 @@ const Category = () => {
                                 <FileCard removeItem={removeItem} key={item.id} id={item.id} img={item.img} title={item.title} artist={item.artist} genre={item.genre} name={item.name} size={item.size} path={item.path} duration={item.duration} comment={item.comment} />
                             ))}
                         </div>
+                        {/* Add more files */}
+                        <form onSubmit={onEditCategoryItems} className='mt-12'>
+                            <div className='flex justify-between items-center'>
+                                <h3 className='font-semibold'>Add more file to {name}</h3>
+                                <button type='submit' className='mt-4 w-1/3 py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold'>Add to {name}</button>
+                            </div>
+                            <div className='mt-4 grid md:grid-cols-2 gap-4'>
+                                {newDataList().map(file => (
+                                    <FileCardSelect onSelectItem={onSelectItem} key={file.id} id={file.id} img={file.img} title={file.title} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} comment={file.comment} />
+                                ))}
+                            </div>
+                        </form>
                     </div>
                 }
             </div>

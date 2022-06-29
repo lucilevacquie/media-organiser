@@ -7,6 +7,49 @@ import Footer from '../components/footer';
 
 //DATA
 import { getCategories, putCategories, getPlaylists, putPlaylists, getData, putData } from "../localStorage";
+export const easyAccessData =
+{
+    audio:
+    {
+        id: 'audio',
+        name: 'Audio',
+        icon: 'boombox',
+        colour: 'orange',
+        fileType: ['wav', 'mp3', 'aac', 'flac', 'alac', 'dsd']
+    },
+    images:
+    {
+        id: 'images',
+        name: 'Images',
+        icon: 'camera-retro',
+        colour: 'pink',
+        fileType: ['jpg', 'png', 'bmp']
+    },
+    videos:
+    {
+        id: 'videos',
+        name: 'Videos',
+        icon: 'camcorder',
+        colour: 'lightBlue',
+        fileType: ['aac', 'mp4', 'wav', 'avi']
+    },
+    documents:
+    {
+        id: 'documents',
+        name: 'Documents',
+        icon: 'books',
+        colour: 'darkBlue',
+        fileType: ['pdf', 'doc', 'html', 'txt']
+    },
+    others:
+    {
+        id: 'others',
+        name: 'Others',
+        icon: 'box-open-full',
+        colour: 'gray-400',
+        fileType: ['pdf', 'doc', 'html', 'txt']
+    }
+}
 
 const ThemeContext = createContext();
 export const useThemeContext = () => useContext(ThemeContext);
@@ -111,6 +154,7 @@ export default function ThemeProvider({ children }) {
         })
     };
 
+    //Available to the provider children
     const values = { editComment, addItemToCategory, addItemToPlaylist, dataList, categories, playlists, isSearchOpen, setIsSearchOpen, createCategory, editCategory, deleteCategory, createPlaylist, editPlaylist, deletePlaylist };
 
     return (

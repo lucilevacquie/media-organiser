@@ -13,6 +13,7 @@ const Playlist = () => {
 
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(false);
     const [selectedItems, setSelectedItems] = useState([]);
 
     const { playlists, dataList, editPlaylist, deletePlaylist } = useThemeContext();
@@ -34,7 +35,7 @@ const Playlist = () => {
 
     const onEditPlaylistItems = event => {
         event.preventDefault();
-        editPlaylist(id, selectedItems, null);
+        editPlaylist(id, [...items, ...selectedItems], null);
         setSelectedItems([]);
         navigate(`/playlist/${id}`);
     };
@@ -50,11 +51,17 @@ const Playlist = () => {
     }
 
     const displayItems = () => {
-        const itemsSelected = dataList.filter(item => items.includes(item.id))
+        const itemsSelected = Object.values(dataList).filter(item => items.includes(item.id));
         return itemsSelected;
     }
 
-    const removeItem = (fileID) => {
+    const newDataList = () => {
+        const nonSelectedItems = Object.values(dataList).filter(item => !items.includes(item.id));
+        return nonSelectedItems;
+    }
+
+    const removeItem = (event, fileID) => {
+        event.stopPropagation();
         const items = playlists[id].items;
         items.splice(items.indexOf(fileID), 1);
         editPlaylist(id, items, null);
@@ -93,6 +100,18 @@ const Playlist = () => {
                 <div className='flex justify-between items-center'>
                     <h2 className='text-2xl font-bold'>{name}</h2>
                     <div className='flex space-x-2'>
+                        <div className='relative'>
+                            <button onClick={() => setShowDropdown(!showDropdown)} className='flex space-x-2 items-center text-xs text-white font-semibold px-4 py-2 bg-gradient-to-r from-lightBlue to-pink rounded-xl'>
+                                <i class="fa-solid fa-arrow-down-arrow-up"></i>
+                                <span className='hidden md:block'>Sort playlist</span>
+                            </button>
+                            {showDropdown &&
+                                <div className='absolute p-2 bg-white text-left text-xs flex flex-col rounded-lg shadow-xl'>
+                                    <button onClick={() => { }} className='p-1 rounded-lg hover:bg-gray-100'>By alphabetical order</button>
+                                    <button onClick={() => { }} className='p-1 rounded-lg hover:bg-gray-100'>By file type</button>
+                                </div>
+                            }
+                        </div>
                         <button onClick={() => setShowEditModal(true)} className='flex space-x-2 items-center text-xs text-white font-semibold px-4 py-2 bg-gradient-to-r from-lightBlue to-pink rounded-xl'>
                             <i className="fa-solid fa-pen-to-square"></i>
                             <span className='hidden md:block'>Edit playlist</span>
@@ -117,10 +136,24 @@ const Playlist = () => {
 
                     </div>
                     :
-                    <div className='mt-8 grid md:grid-cols-2 gap-4'>
-                        {displayItems().map(item => (
-                            <FileCard removeItem={removeItem} key={item.id} id={item.id} img={item.img} title={item.title} artist={item.artist} genre={item.genre} name={item.name} size={item.size} path={item.path} duration={item.duration} comment={item.comment} />
-                        ))}
+                    <div className='mt-8 '>
+                        <div className='grid md:grid-cols-2 gap-4'>
+                            {displayItems().map(item => (
+                                <FileCard removeItem={removeItem} key={item.id} id={item.id} img={item.img} title={item.title} artist={item.artist} genre={item.genre} name={item.name} size={item.size} path={item.path} duration={item.duration} comment={item.comment} />
+                            ))}
+                        </div>
+                        {/* Add more files */}
+                        <form onSubmit={onEditPlaylistItems} className='mt-12'>
+                            <div className='flex justify-between items-center'>
+                                <h3 className='font-semibold'>Add more file to {name}</h3>
+                                <button type='submit' className='mt-4 w-1/3 py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold'>Add to {name}</button>
+                            </div>
+                            <div className='mt-4 grid md:grid-cols-2 gap-4'>
+                                {newDataList().map(file => (
+                                    <FileCardSelect onSelectItem={onSelectItem} key={file.id} id={file.id} img={file.img} title={file.title} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} comment={file.comment} />
+                                ))}
+                            </div>
+                        </form>
                     </div>
                 }
             </div>

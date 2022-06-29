@@ -59,7 +59,10 @@ const File = () => {
                                 <p><span className='underline'>Comment:</span> {comment}</p>
                             </div>
                         </div>
-                        <button onClick={() => setShowEditCommentModal(true)} className='mt-4 w-1/3 py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold'>Update comment</button>
+                        <div className='flex space-x-4'>
+                            <button onClick={() => setShowEditCommentModal(true)} className='mt-4 w-1/3 py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold'>Update comment</button>
+                            {/* <button onClick={() => onDeleteComment()} className='mt-4 w-1/3 py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold'>Delete comment</button> */}
+                        </div>
                     </div>
 
                     {img ?

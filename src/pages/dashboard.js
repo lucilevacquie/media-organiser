@@ -4,8 +4,12 @@ import { useThemeContext } from '../providers/ThemeContext';
 //COMPONENTS
 import CategoryCard from '../components/categoryCard';
 import PlaylistCard from '../components/playlistCard';
-import FileCard from '../components/fileCard';
+import EasyAccessCard from '../components/easyAccessCard';
+import Card from '../components/card';
 import Modal from '../components/modal';
+
+//DATA
+import { easyAccessData } from '../providers/ThemeContext';
 
 const Dashboard = () => {
 
@@ -37,6 +41,8 @@ const Dashboard = () => {
         createPlaylist(fd.get('name'));
         setShowCreateModal(false);
     }
+
+    console.log(easyAccessData)
 
     return (
         <>
@@ -75,6 +81,16 @@ const Dashboard = () => {
             }
 
             <div className='relative max-w-7xl mx-auto px-4 lg:px-8'>
+                <div className='mt-8'>
+                    <h2 className='text-xl font-bold'>Easy access</h2>
+                    <div>
+                        <div className='mt-4 grid grid-col-2 md:grid-cols-5 gap-4'>
+                            {Object.values(easyAccessData).map(item => (
+                                <EasyAccessCard key={item.id} id={item.id} name={item.name} icon={item.icon} colour={item.colour} />
+                            ))}
+                        </div>
+                    </div>
+                </div>
                 <div className='mt-8'>
                     <div className='flex justify-between items-center'>
                         <h2 className='text-xl font-bold'>Categories</h2>
@@ -120,7 +136,7 @@ const Dashboard = () => {
                     <h2 className='text-xl font-bold'>All Files</h2>
                     <div className='mt-4 grid md:grid-cols-2 gap-4'>
                         {Object.values(dataList).map(file => (
-                            <FileCard key={file.id} id={file.id} title={file.title} img={file.img} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} comment={file.comment} />
+                            <Card key={file.id} id={file.id} title={file.title} img={file.img} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} comment={file.comment} />
                         ))}
                     </div>
                 </div>

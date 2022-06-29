@@ -6,6 +6,7 @@ import ThemeProvider from './providers/ThemeContext';
 import Dashboard from './pages/dashboard';
 import Category from './pages/category';
 import Playlist from './pages/playlist';
+import Type from './pages/type';
 import File from './pages/file';
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/" element={<Dashboard />} />
           <Route path="/category/:id" element={<Category />} />
           <Route path="/playlist/:id" element={<Playlist />} />
+          <Route path="/:id" element={<Type />} />
           <Route path="/file/:id" element={<File />} />
         </Routes>
       </ThemeProvider>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
-const FileCard = ({ id, img, name, title, artist, genre, size, path, duration, removeItem, comment, setShowEditCommentModal }) => {
+const Card = ({ id, img, name, title, artist, genre, size, path, duration, comment }) => {
     return (
         <div className='bg-white rounded-xl flex flex-col justify-between shadow-xl hover:shadow-2xl focus:shadow-2xl'>
             <Link to={`/file/${id}`} className='w-full text-left '>
@@ -28,11 +28,8 @@ const FileCard = ({ id, img, name, title, artist, genre, size, path, duration, r
                     </div>
                 </div>
             </Link>
-            <div className='rounded-b-xl p-4'>
-                <button onClick={(event) => { removeItem(event, id) }} className='mt-4 w-1/3 py-2 px-4 text-center text-xs bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold'>Remove from list</button>
-            </div>
         </div>
     )
 }
 
-export default FileCard;
+export default Card;
