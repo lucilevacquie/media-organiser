@@ -84,7 +84,7 @@ export default function ThemeProvider({ children }) {
         })
     };
 
-    //Edit a category's name
+    //Edit a category's name and update its items
     const editCategory = (id, items, newName) => {
         const existingCategory = categories[id];
         existingCategory.name = newName || existingCategory.name;
@@ -94,7 +94,7 @@ export default function ThemeProvider({ children }) {
             [existingCategory.id]: existingCategory
         })
     };
-    //Edit a playlist's name
+    //Edit a playlist's name and update its items
     const editPlaylist = (id, items, newName) => {
         const existingPlaylist = playlists[id];
         existingPlaylist.name = newName || existingPlaylist.name;
@@ -116,24 +116,6 @@ export default function ThemeProvider({ children }) {
         delete existingPlaylists[playlistId];
         setPlaylists({ ...existingPlaylists });
     };
-    //Add files to a category
-    const addItemToCategory = (id, newItems) => {
-        const existingCategory = categories[id];
-        existingCategory.items = newItems;
-        setCategories({
-            ...categories,
-            [existingCategory.id]: existingCategory
-        })
-    }
-    //Add files to a playlist
-    const addItemToPlaylist = (id, newItems) => {
-        const existingPlaylist = playlists[id];
-        existingPlaylist.items = newItems;
-        setPlaylists({
-            ...playlists,
-            [existingPlaylist.id]: existingPlaylist
-        })
-    }
     //Edit comment from media files
     const editComment = (id, newComment) => {
         const existingMediaFile = dataList[id];
@@ -158,8 +140,6 @@ export default function ThemeProvider({ children }) {
     const values = {
         editImage,
         editComment,
-        addItemToCategory,
-        addItemToPlaylist,
         dataList,
         categories,
         playlists,
