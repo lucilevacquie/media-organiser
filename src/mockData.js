@@ -6,7 +6,7 @@ const minSize = 1;
 const maxSize = 7;
 
 
-const audioFileTypes = ['wav', 'mp3', 'aac', 'flac', 'alac', 'dsd']
+const audioFileTypes = ['wav', 'mp3', 'flac', 'alac', 'dsd']
 
 
 //AUDIO FILES
@@ -83,7 +83,7 @@ const createDocItem = () => {
 }
 
 //VIDEOS
-const videoFileTypes = ['aac', 'mp4', 'wav', 'avi'];
+const videoFileTypes = ['aac', 'mp4', 'avi'];
 const minDuration = 1;
 const maxDuration = 10;
 

@@ -42,8 +42,6 @@ const Dashboard = () => {
         setShowCreateModal(false);
     }
 
-    console.log(easyAccessData)
-
     return (
         <>
             {showCreateModal &&

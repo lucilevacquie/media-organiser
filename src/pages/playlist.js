@@ -7,18 +7,26 @@ import FileCardSelect from '../components/fileCardSelect';
 import FileCard from '../components/fileCard';
 import Modal from '../components/modal';
 
+//FILE TYPE
+const fileTypes = ['wav', 'mp3', 'flac', 'alac', 'dsd']
+
 const Playlist = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+
+    const { playlists, dataList, editPlaylist, deletePlaylist } = useThemeContext();
+
+    const { name, items } = playlists[id];
 
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
     const [selectedItems, setSelectedItems] = useState([]);
 
-    const { playlists, dataList, editPlaylist, deletePlaylist } = useThemeContext();
-
-    const { name, items } = playlists[id];
+    const getAudioFiles = () => {
+        const audioFiles = Object.values(dataList).filter(file => fileTypes.includes(file.fileType));
+        return audioFiles.filter(file => !items.includes(file.id));
+    };
 
     const onEditPlaylistName = (event) => {
         event.preventDefault();
@@ -50,13 +58,8 @@ const Playlist = () => {
         }
     }
 
-    const displayItems = () => {
-        const itemsSelected = Object.values(dataList).filter(item => items.includes(item.id));
-        return itemsSelected;
-    }
-
     const newDataList = () => {
-        const nonSelectedItems = Object.values(dataList).filter(item => !items.includes(item.id));
+        const nonSelectedItems = Object.values(getAudioFiles()).filter(item => !items.includes(item.id));
         return nonSelectedItems;
     }
 
@@ -65,6 +68,18 @@ const Playlist = () => {
         const items = playlists[id].items;
         items.splice(items.indexOf(fileID), 1);
         editPlaylist(id, items, null);
+    }
+
+    const sortByAlphabeticalOrder = (order = 'asc') => {
+        const sortedItems = items.sort((a, b) => {
+            const itemA = dataList[a];
+            const itemB = dataList[b];
+
+            if (itemA.title > itemB.title) return order === 'asc' ? 1 : -1;
+            if (itemA.title < itemB.title) return order === 'asc' ? -1 : 1;
+            return 0
+        });
+        editPlaylist(id, sortedItems, null);
     }
 
     return (
@@ -102,13 +117,13 @@ const Playlist = () => {
                     <div className='flex space-x-2'>
                         <div className='relative'>
                             <button onClick={() => setShowDropdown(!showDropdown)} className='flex space-x-2 items-center text-xs text-white font-semibold px-4 py-2 bg-gradient-to-r from-lightBlue to-pink rounded-xl'>
-                                <i class="fa-solid fa-arrow-down-arrow-up"></i>
+                                <i className="fa-solid fa-arrow-down-arrow-up"></i>
                                 <span className='hidden md:block'>Sort playlist</span>
                             </button>
                             {showDropdown &&
                                 <div className='absolute p-2 bg-white text-left text-xs flex flex-col rounded-lg shadow-xl'>
-                                    <button onClick={() => { }} className='p-1 rounded-lg hover:bg-gray-100'>By alphabetical order</button>
-                                    <button onClick={() => { }} className='p-1 rounded-lg hover:bg-gray-100'>By file type</button>
+                                    <button onClick={() => sortByAlphabeticalOrder('asc')} className='p-1 rounded-lg hover:bg-gray-100'>By ascending alphabetical order</button>
+                                    <button onClick={() => sortByAlphabeticalOrder('des')} className='p-1 rounded-lg hover:bg-gray-100'>By descending alphabetical order</button>
                                 </div>
                             }
                         </div>
@@ -127,7 +142,7 @@ const Playlist = () => {
                         <h3>{name} is empty. Select the file you want to add to {name}.</h3>
                         <form onSubmit={onEditPlaylistItems}>
                             <div className='mt-4 grid md:grid-cols-2 gap-4'>
-                                {Object.values(dataList).map(file => (
+                                {Object.values(getAudioFiles()).map(file => (
                                     <FileCardSelect onSelectItem={onSelectItem} key={file.id} id={file.id} img={file.img} title={file.title} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} comment={file.comment} />
                                 ))}
                             </div>
@@ -138,9 +153,10 @@ const Playlist = () => {
                     :
                     <div className='mt-8 '>
                         <div className='grid md:grid-cols-2 gap-4'>
-                            {displayItems().map(item => (
-                                <FileCard removeItem={removeItem} key={item.id} id={item.id} img={item.img} title={item.title} artist={item.artist} genre={item.genre} name={item.name} size={item.size} path={item.path} duration={item.duration} comment={item.comment} />
-                            ))}
+                            {items.map(item => {
+                                const fileItem = dataList[item]
+                                return <FileCard removeItem={removeItem} key={fileItem.id} id={fileItem.id} img={fileItem.img} title={fileItem.title} artist={fileItem.artist} genre={fileItem.genre} name={fileItem.name} size={fileItem.size} path={fileItem.path} duration={fileItem.duration} comment={fileItem.comment} />
+                            })}
                         </div>
                         {/* Add more files */}
                         <form onSubmit={onEditPlaylistItems} className='mt-12'>
@@ -149,7 +165,7 @@ const Playlist = () => {
                                 <button type='submit' className='mt-4 w-1/3 py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold'>Add to {name}</button>
                             </div>
                             <div className='mt-4 grid md:grid-cols-2 gap-4'>
-                                {newDataList().map(file => (
+                                {getAudioFiles().map(file => (
                                     <FileCardSelect onSelectItem={onSelectItem} key={file.id} id={file.id} img={file.img} title={file.title} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} comment={file.comment} />
                                 ))}
                             </div>
