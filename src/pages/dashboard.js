@@ -28,10 +28,6 @@ const Dashboard = () => {
 
     const { dataList, categories, playlists, createCategory, createPlaylist } = useThemeContext();
 
-    console.log(categories)
-    console.log(playlists)
-    console.log(dataList)
-
     const onCreateCategoryName = (event) => {
         event.preventDefault();
         const fd = new FormData(event.target);
