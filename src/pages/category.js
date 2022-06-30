@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useThemeContext } from '../providers/ThemeContext';
 
 //COMPONENTS
@@ -97,7 +97,11 @@ const Category = () => {
             )}
             <div className='pt-8 pb-16 max-w-7xl mx-auto px-4 lg:px-8'>
                 <div className='flex justify-between items-center'>
-                    <h2 className='text-2xl font-bold'>{name}</h2>
+                    <div className='flex space-x-4 items-center'>
+                        <Link to={'/'}><i class="fa-solid fa-chevron-left"></i></Link>
+                        <h2 className='text-2xl font-bold'>{name}</h2>
+                    </div>
+                    
                     <div className='flex space-x-2'>
                         <button onClick={() => setShowEditModal(true)} className='flex space-x-2 items-center text-xs text-white font-semibold px-4 py-2 bg-gradient-to-r from-lightBlue to-pink rounded-xl'>
                             <i className="fa-solid fa-pen-to-square"></i>
@@ -111,14 +115,17 @@ const Category = () => {
                 </div>
                 {items.length === 0 ?
                     <div className='mt-8'>
-                        <h3>{name} is empty. Select the file you want to add to {name}.</h3>
+                        
                         <form onSubmit={onEditCategoryItems}>
+                            <div className='flex justify-between items-center'>
+                                <h3>{name} is empty. Select the file you want to add to {name}.</h3>
+                                <button type='submit' className='text-xs py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold md:text-base md:w-1/3'>Add to {name}</button>
+                            </div>
                             <div className='mt-4 grid md:grid-cols-2 gap-4'>
                                 {Object.values(dataList).map(file => (
                                     <FileCardSelect onSelectItem={onSelectItem} key={file.id} id={file.id} img={file.img} title={file.title} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} comment={file.comment} />
                                 ))}
                             </div>
-                            <button type='submit' className='mt-4 w-1/3 py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold'>Add to {name}</button>
                         </form>
                     </div>
                     :
@@ -132,7 +139,7 @@ const Category = () => {
                         <form onSubmit={onEditCategoryItems} className='mt-12'>
                             <div className='flex justify-between items-center'>
                                 <h3 className='font-semibold'>Add more file to {name}</h3>
-                                <button type='submit' className='mt-4 w-1/3 py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold'>Add to {name}</button>
+                                <button type='submit' className='text-xs py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold md:text-base md:w-1/3'>Add to {name}</button>
                             </div>
                             <div className='mt-4 grid md:grid-cols-2 gap-4'>
                                 {newDataList().map(file => (

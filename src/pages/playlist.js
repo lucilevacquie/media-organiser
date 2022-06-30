@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useThemeContext } from '../providers/ThemeContext';
 
 //COMPONENTS
@@ -109,7 +109,10 @@ const Playlist = () => {
             )}
             <div className='pt-8 pb-16 max-w-7xl mx-auto px-4 lg:px-8'>
                 <div className='flex justify-between items-center'>
-                    <h2 className='text-2xl font-bold'>{name}</h2>
+                    <div className='flex space-x-4 items-center'>
+                        <Link to={'/'}><i class="fa-solid fa-chevron-left"></i></Link>
+                        <h2 className='text-2xl font-bold'>{name}</h2>
+                    </div>
                     <div className='flex space-x-2'>
                         <div className='relative'>
                             <button onClick={() => setShowDropdown(!showDropdown)} className='flex space-x-2 items-center text-xs text-white font-semibold px-4 py-2 bg-gradient-to-r from-lightBlue to-pink rounded-xl'>
@@ -139,7 +142,7 @@ const Playlist = () => {
                         <form onSubmit={onEditPlaylistItems}>
                             <div className='mt-4 grid md:grid-cols-2 gap-4'>
                                 {Object.values(getAudioFiles()).map(file => (
-                                    <FileCardSelect onSelectItem={onSelectItem} key={file.id} id={file.id} img={file.img} title={file.title} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} comment={file.comment} />
+                                    <FileCardSelect onSelectItem={onSelectItem} key={file.id} id={file.id} img={file.img} title={file.title} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} comment={file.comment} type={file.fileType}/>
                                 ))}
                             </div>
                             <button type='submit' className='mt-4 w-1/3 py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold'>Add to {name}</button>
@@ -151,18 +154,18 @@ const Playlist = () => {
                         <div className='grid md:grid-cols-2 gap-4'>
                             {items.map(item => {
                                 const fileItem = dataList[item]
-                                return <FileCard removeItem={removeItem} key={fileItem.id} id={fileItem.id} img={fileItem.img} title={fileItem.title} artist={fileItem.artist} genre={fileItem.genre} name={fileItem.name} size={fileItem.size} path={fileItem.path} duration={fileItem.duration} comment={fileItem.comment} />
+                                return <FileCard removeItem={removeItem} key={fileItem.id} id={fileItem.id} img={fileItem.img} title={fileItem.title} artist={fileItem.artist} genre={fileItem.genre} name={fileItem.name} size={fileItem.size} path={fileItem.path} duration={fileItem.duration} comment={fileItem.comment} type={fileItem.fileType}/>
                             })}
                         </div>
                         {/* Add more files */}
                         <form onSubmit={onEditPlaylistItems} className='mt-12'>
                             <div className='flex justify-between items-center'>
                                 <h3 className='font-semibold'>Add more file to {name}</h3>
-                                <button type='submit' className='mt-4 w-1/3 py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold'>Add to {name}</button>
+                                <button type='submit' className='w-1/3 py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold'>Add to {name}</button>
                             </div>
                             <div className='mt-4 grid md:grid-cols-2 gap-4'>
                                 {getAudioFiles().map(file => (
-                                    <FileCardSelect onSelectItem={onSelectItem} key={file.id} id={file.id} img={file.img} title={file.title} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} comment={file.comment} />
+                                    <FileCardSelect onSelectItem={onSelectItem} key={file.id} id={file.id} img={file.img} title={file.title} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} comment={file.comment} type={file.fileType} />
                                 ))}
                             </div>
                         </form>

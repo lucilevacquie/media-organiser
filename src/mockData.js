@@ -105,7 +105,7 @@ const createVideoItem = () => {
         fileType,
         size,
         duration,
-        path: `D:/media/videos/${title.replaceAll(' ', '-')}`,
+        path: `D:/media/videos/${title.replaceAll(' ', '-')}.${fileType}`,
         comment
     }
 

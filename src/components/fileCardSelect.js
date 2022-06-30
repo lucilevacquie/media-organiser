@@ -10,26 +10,26 @@ const FileCardSelect = ({ id, img, name, title, artist, genre, size, path, durat
                 </div>
                 <div className='flex flex-col space-y-2'>
                     {name ?
-                        <p><span className='underline'>Name:</span> {name}</p>
+                        <p><span className='underline text-darkBlue'>Name:</span> {name}</p>
                         :
-                        <p><span className='underline'>Title:</span> {title} by <span className='italic'>{artist}</span></p>
+                        <p><span className='underline text-darkBlue'>Title:</span> {title} by <span className='italic'>{artist}</span></p>
                     }
 
                     {genre &&
-                        <p><span className='underline'>Genre:</span> {genre}</p>
+                        <p><span className='underline text-darkBlue'>Genre:</span> {genre}</p>
                     }
                     {duration &&
-                        <p><span className='underline'>Duration:</span> {duration}min</p>
+                        <p><span className='underline text-darkBlue'>Duration:</span> {duration}min</p>
                     }
-                    <p><span className='underline'>Path:</span> {path}</p>
-                    <p><span className='underline'>Size:</span> {size}kB</p>
-                    <p><span className='underline'>Comment:</span> {comment}</p>
+                    <p><span className='underline text-darkBlue'>Path:</span> {path}</p>
+                    <p><span className='underline text-darkBlue'>Size:</span> {size}kB</p>
+                    <p><span className='underline text-darkBlue'>Comment:</span> {comment}</p>
                 </div>
             </div>
-            <div className='bg-blue-200 rounded-b-xl p-4'>
+            <div className='bg-lightBlue/20 rounded-b-xl p-4'>
                 <div className='flex space-x-2 items-center'>
                     <input type='checkbox' name='checkbox' onChange={(event) => onSelectItem(event, id)} />
-                    <label>Add to category</label>
+                    <label className='font-semibold'>Add to category</label>
                 </div>
             </div>
         </div>
