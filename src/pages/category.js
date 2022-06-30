@@ -98,10 +98,10 @@ const Category = () => {
             <div className='pt-8 pb-16 max-w-7xl mx-auto px-4 lg:px-8'>
                 <div className='flex justify-between items-center'>
                     <div className='flex space-x-4 items-center'>
-                        <Link to={'/'}><i class="fa-solid fa-chevron-left"></i></Link>
+                        <Link to={'/'}><i className="fa-solid fa-chevron-left"></i></Link>
                         <h2 className='text-2xl font-bold'>{name}</h2>
                     </div>
-                    
+
                     <div className='flex space-x-2'>
                         <button onClick={() => setShowEditModal(true)} className='flex space-x-2 items-center button'>
                             <i className="fa-solid fa-pen-to-square"></i>
@@ -115,7 +115,7 @@ const Category = () => {
                 </div>
                 {items.length === 0 ?
                     <div className='mt-8'>
-                        
+
                         <form onSubmit={onEditCategoryItems}>
                             <div className='flex justify-between items-center'>
                                 <h3>{name} is empty. Select the file you want to add to {name}.</h3>

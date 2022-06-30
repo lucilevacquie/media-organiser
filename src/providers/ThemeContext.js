@@ -54,7 +54,7 @@ export default function ThemeProvider({ children }) {
     useEffect(() => { putPlaylists(playlists) }, [playlists]);
 
     const [dataList, setDataList] = useState(getData());
-    useEffect(() => { putData(dataList) }, []);
+    useEffect(() => { putData(dataList) }, [dataList]);
 
     const [isSearchOpen, setIsSearchOpen] = useState(false);
 
@@ -145,6 +145,7 @@ export default function ThemeProvider({ children }) {
     };
     //Handle media file's image
     const editImage = (id, newImage) => {
+        console.log(newImage)
         const existingMediaFile = dataList[id];
         existingMediaFile.img = newImage;
         setDataList({
@@ -154,22 +155,22 @@ export default function ThemeProvider({ children }) {
     };
 
     //Available to the provider children
-    const values = { 
-        editImage, 
-        editComment, 
-        addItemToCategory, 
-        addItemToPlaylist, 
-        dataList, 
-        categories, 
-        playlists, 
-        isSearchOpen, 
-        setIsSearchOpen, 
-        createCategory, 
-        editCategory, 
-        deleteCategory, 
-        createPlaylist, 
-        editPlaylist, 
-        deletePlaylist 
+    const values = {
+        editImage,
+        editComment,
+        addItemToCategory,
+        addItemToPlaylist,
+        dataList,
+        categories,
+        playlists,
+        isSearchOpen,
+        setIsSearchOpen,
+        createCategory,
+        editCategory,
+        deleteCategory,
+        createPlaylist,
+        editPlaylist,
+        deletePlaylist
     };
 
     return (

@@ -110,7 +110,7 @@ const Playlist = () => {
             <div className='pt-8 pb-16 max-w-7xl mx-auto px-4 lg:px-8'>
                 <div className='flex justify-between items-center'>
                     <div className='flex space-x-4 items-center'>
-                        <Link to={'/'}><i class="fa-solid fa-chevron-left"></i></Link>
+                        <Link to={'/'}><i className="fa-solid fa-chevron-left"></i></Link>
                         <h2 className='text-2xl font-bold'>{name}</h2>
                     </div>
                     <div className='flex space-x-2'>
@@ -142,7 +142,7 @@ const Playlist = () => {
                         <form onSubmit={onEditPlaylistItems}>
                             <div className='mt-4 grid md:grid-cols-2 gap-4'>
                                 {Object.values(getAudioFiles()).map(file => (
-                                    <FileCardSelect onSelectItem={onSelectItem} key={file.id} id={file.id} img={file.img} title={file.title} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} comment={file.comment} type={file.fileType}/>
+                                    <FileCardSelect onSelectItem={onSelectItem} key={file.id} id={file.id} img={file.img} title={file.title} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} comment={file.comment} type={file.fileType} />
                                 ))}
                             </div>
                             <button type='submit' className='mt-4 button md:w-1/3 '>Add to {name}</button>
@@ -154,7 +154,7 @@ const Playlist = () => {
                         <div className='grid md:grid-cols-2 gap-4'>
                             {items.map(item => {
                                 const fileItem = dataList[item]
-                                return <FileCard removeItem={removeItem} key={fileItem.id} id={fileItem.id} img={fileItem.img} title={fileItem.title} artist={fileItem.artist} genre={fileItem.genre} name={fileItem.name} size={fileItem.size} path={fileItem.path} duration={fileItem.duration} comment={fileItem.comment} type={fileItem.fileType}/>
+                                return <FileCard removeItem={removeItem} key={fileItem.id} id={fileItem.id} img={fileItem.img} title={fileItem.title} artist={fileItem.artist} genre={fileItem.genre} name={fileItem.name} size={fileItem.size} path={fileItem.path} duration={fileItem.duration} comment={fileItem.comment} type={fileItem.fileType} />
                             })}
                         </div>
                         {/* Add more files */}

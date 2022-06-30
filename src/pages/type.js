@@ -22,7 +22,7 @@ const Type = () => {
 
         <div className='pt-8 pb-16 max-w-7xl mx-auto px-4 lg:px-8'>
             <div className='flex space-x-4 items-center'>
-                <Link to={'/'}><i class="fa-solid fa-chevron-left"></i></Link>
+                <Link to={'/'}><i className="fa-solid fa-chevron-left"></i></Link>
                 <h2 className='text-2xl font-bold'>{easyAccessData[id].name}</h2>
             </div>
             <div className='mt-8 grid md:grid-cols-2 gap-4'>
