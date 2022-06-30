@@ -54,7 +54,7 @@ const File = () => {
                     <form onSubmit={onEditComment} className='mt-4 flex flex-col space-y-2'>
                         <label>New comment</label>
                         <input type='text' name='comment' className='py-2 px-4 border rounded-lg' />
-                        <button type='submit' className='mt-4 w-full py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold'>Update</button>
+                        <button type='submit' className='mt-4 w-full button'>Update</button>
                     </form>
                 </Modal>
             )}
@@ -71,7 +71,7 @@ const File = () => {
                         name="myImage"
                         onChange={event => handleImage(event)}
                     />
-                    <button onClick={onEditImage} className='text-xs mt-4 py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold md:text-base md:w-1/3 '>Save</button>
+                    <button onClick={onEditImage} className='mt-4 button md:w-1/3 '>Save</button>
                 </Modal>
             )}
             <div className='pt-8 pb-16 max-w-7xl mx-auto px-4 lg:px-8'>
@@ -95,7 +95,7 @@ const File = () => {
                             </div>
                         </div>
                         <div className='flex space-x-4'>
-                            <button onClick={() => setShowEditCommentModal(true)} className='text-xs mt-4 py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold md:text-base md:w-1/3 '>Update comment</button>
+                            <button onClick={() => setShowEditCommentModal(true)} className='mt-4 button md:w-1/3 '>Update comment</button>
                         </div>
                     </div>
 
@@ -105,8 +105,8 @@ const File = () => {
                                 <img src={imageURL} alt={name} />
                             </div>
                             <div className='flex space-x-4'>
-                                <button onClick={() => setShowImageModal(true)} className='mt-4 w-1/3 py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold'>Change image</button>
-                                <button onClick={()=>setSelectedImage(null)} className='mt-4 w-1/3 py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold'>Remove image</button>
+                                <button onClick={() => setShowImageModal(true)} className='mt-4 button md:w-1/3 '>Change image</button>
+                                <button onClick={()=>setSelectedImage(null)} className='mt-4 button md:w-1/3 '>Remove image</button>
                             </div>
                         </div>
                         :

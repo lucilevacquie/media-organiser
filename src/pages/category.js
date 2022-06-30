@@ -79,7 +79,7 @@ const Category = () => {
                     <form onSubmit={onEditCategoryName} className='mt-4 flex flex-col space-y-2'>
                         <label>Category name</label>
                         <input type='text' name='name' className='py-2 px-4 border rounded-lg' />
-                        <button type='submit' className='mt-4 w-full py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold'>Update</button>
+                        <button type='submit' className='mt-4 w-full button'>Update</button>
                     </form>
                 </Modal>
             )}
@@ -103,11 +103,11 @@ const Category = () => {
                     </div>
                     
                     <div className='flex space-x-2'>
-                        <button onClick={() => setShowEditModal(true)} className='flex space-x-2 items-center text-xs text-white font-semibold px-4 py-2 bg-gradient-to-r from-lightBlue to-pink rounded-xl'>
+                        <button onClick={() => setShowEditModal(true)} className='flex space-x-2 items-center button'>
                             <i className="fa-solid fa-pen-to-square"></i>
                             <span className='hidden md:block'>Edit category</span>
                         </button>
-                        <button onClick={() => setShowDeleteModal(true)} className='flex space-x-2 items-center text-xs text-white font-semibold px-4 py-2 bg-gradient-to-r from-lightBlue to-pink rounded-xl'>
+                        <button onClick={() => setShowDeleteModal(true)} className='flex space-x-2 items-center button'>
                             <i className="fa-solid fa-trash"></i>
                             <span className='hidden md:block'>Delete category</span>
                         </button>
@@ -119,7 +119,7 @@ const Category = () => {
                         <form onSubmit={onEditCategoryItems}>
                             <div className='flex justify-between items-center'>
                                 <h3>{name} is empty. Select the file you want to add to {name}.</h3>
-                                <button type='submit' className='text-xs py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold md:text-base md:w-1/3'>Add to {name}</button>
+                                <button type='submit' className='button md:w-1/3'>Add to {name}</button>
                             </div>
                             <div className='mt-4 grid md:grid-cols-2 gap-4'>
                                 {Object.values(dataList).map(file => (
@@ -139,7 +139,7 @@ const Category = () => {
                         <form onSubmit={onEditCategoryItems} className='mt-12'>
                             <div className='flex justify-between items-center'>
                                 <h3 className='font-semibold'>Add more file to {name}</h3>
-                                <button type='submit' className='text-xs py-2 px-4 text-center bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold md:text-base md:w-1/3'>Add to {name}</button>
+                                <button type='submit' className='button md:w-1/3'>Add to {name}</button>
                             </div>
                             <div className='mt-4 grid md:grid-cols-2 gap-4'>
                                 {newDataList().map(file => (

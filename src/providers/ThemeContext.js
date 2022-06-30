@@ -39,14 +39,6 @@ export const easyAccessData = {
         icon: 'books',
         colour: 'darkBlue',
         fileType: ['pdf', 'doc', 'html', 'txt']
-    },
-    others:
-    {
-        id: 'others',
-        name: 'Others',
-        icon: 'box-open-full',
-        colour: 'gray-400',
-        fileType: ['pdf', 'doc', 'html', 'txt']
     }
 };
 

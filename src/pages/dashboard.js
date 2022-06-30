@@ -82,7 +82,7 @@ const Dashboard = () => {
                 <div className='mt-8'>
                     <h2 className='text-xl font-bold'>Easy access</h2>
                     <div>
-                        <div className='mt-4 grid grid-col-2 md:grid-cols-5 gap-4'>
+                        <div className='mt-4 grid grid-col-2 md:grid-cols-3 lg:grid-cols-5 gap-4'>
                             {Object.values(easyAccessData).map(item => (
                                 <EasyAccessCard key={item.id} id={item.id} name={item.name} icon={item.icon} colour={item.colour} />
                             ))}
@@ -92,19 +92,19 @@ const Dashboard = () => {
                 <div className='mt-8'>
                     <div className='flex justify-between items-center'>
                         <h2 className='text-xl font-bold'>Categories</h2>
-                        <button onClick={() => onClickCreateCategory()} className='md:hidden text-xs text-white font-semibold px-4 py-2 bg-gradient-to-r from-lightBlue to-pink rounded-xl'>
+                        <button onClick={() => onClickCreateCategory()} className='md:hidden button'>
                             Create category
                         </button>
                     </div>
                     <div>
                         {categories.length === 0 ?
-                            <button onClick={() => onClickCreateCategory()} className='hidden mt-4 px-8 py-2 bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white text-2xl font-bold md:block'>+ Create category</button>
+                            <button onClick={() => onClickCreateCategory()} className='hidden mt-4 button font-bold md:block'>+ Create category</button>
                             :
                             <div className='mt-4 grid grid-col-2 md:grid-cols-5 gap-4'>
                                 {Object.values(categories).map(category => (
                                     <CategoryCard key={category.id} id={category.id} name={category.name} />
                                 ))}
-                                <button onClick={() => onClickCreateCategory()} className='hidden px-8 py-4 bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-bold md:block'>+ Create a category</button>
+                                <button onClick={() => onClickCreateCategory()} className='button hidden md:block'>+ Create a category</button>
                             </div>
                         }
                     </div>
@@ -112,19 +112,19 @@ const Dashboard = () => {
                 <div className='mt-8'>
                     <div className='flex justify-between items-center'>
                         <h2 className='text-xl font-bold'>Playlists</h2>
-                        <button onClick={() => onClickCreatePlaylist()} className='md:hidden text-xs text-white font-semibold px-4 py-2 bg-gradient-to-r from-lightBlue to-pink rounded-xl'>
+                        <button onClick={() => onClickCreatePlaylist()} className='md:hidden button'>
                             Create playlist
                         </button>
                     </div>
                     <div>
                         {playlists.length === 0 ?
-                            <button onClick={() => onClickCreatePlaylist()} className='hidden mt-4 px-8 py-2 bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white text-2xl font-bold md:block'>+ Create playlist</button>
+                            <button onClick={() => onClickCreatePlaylist()} className='hidden mt-4 button md:block'>+ Create playlist</button>
                             :
                             <div className='mt-4 grid grid-col-2 md:grid-cols-5 gap-4'>
                                 {Object.values(playlists).map(playlist => (
                                     <PlaylistCard key={playlist.id} id={playlist.id} name={playlist.name} />
                                 ))}
-                                <button onClick={() => onClickCreatePlaylist()} className='hidden px-8 py-4 bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-bold md:block'>+ Create a playlist</button>
+                                <button onClick={() => onClickCreatePlaylist()} className='hidden button md:block'>+ Create a playlist</button>
                             </div>
                         }
                     </div>

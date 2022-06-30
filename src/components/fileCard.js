@@ -29,7 +29,7 @@ const FileCard = ({ id, img, name, title, artist, genre, size, path, duration, r
                 </div>
             </Link>
             <div className='rounded-b-xl p-4'>
-                <button onClick={(event) => { removeItem(event, id) }} className='mt-4 py-2 px-4 text-center text-xs bg-gradient-to-r from-lightBlue to-pink rounded-xl text-white font-semibold md:w-1/3 md:text-base'>Remove from list</button>
+                <button onClick={(event) => { removeItem(event, id) }} className='mt-4 button md:w-1/3'>Remove from list</button>
             </div>
         </div>
     )
