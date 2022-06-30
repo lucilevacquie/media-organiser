@@ -58,11 +58,6 @@ const Playlist = () => {
         }
     }
 
-    const newDataList = () => {
-        const nonSelectedItems = Object.values(getAudioFiles()).filter(item => !items.includes(item.id));
-        return nonSelectedItems;
-    }
-
     const removeItem = (event, fileID) => {
         event.stopPropagation();
         const items = playlists[id].items;
@@ -80,6 +75,7 @@ const Playlist = () => {
             return 0
         });
         editPlaylist(id, sortedItems, null);
+        setShowDropdown(false);
     }
 
     return (

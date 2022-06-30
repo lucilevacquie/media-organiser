@@ -6,10 +6,9 @@ const minSize = 1;
 const maxSize = 7;
 
 
-const audioFileTypes = ['wav', 'mp3', 'flac', 'alac', 'dsd']
-
-
 //AUDIO FILES
+
+const audioFileTypes = ['wav', 'mp3', 'flac', 'alac', 'dsd']
 
 const createAudioItem = () => {
     const minDuration = 1;
@@ -22,6 +21,7 @@ const createAudioItem = () => {
     const size = Math.floor(Math.random() * (maxSize - minSize + 1) + minSize)
     const duration = Math.floor(Math.random() * (maxDuration - minDuration + 1) + minDuration);
     const comment = faker.lorem.text(3);
+    // const img = '';
 
     const audioItem = {
         id: uuidv4(),
@@ -32,7 +32,8 @@ const createAudioItem = () => {
         size,
         duration,
         path: `D:/media/audio/${genre.toLowerCase()}/${artist.toLowerCase()}/${artist.replaceAll(' ', '-')}_${title.replaceAll(' ', '-')}.${fileType}`,
-        comment
+        comment,
+        // img
     }
 
     return audioItem;
@@ -69,6 +70,7 @@ const createDocItem = () => {
     const title = faker.random.words();
     const size = Math.floor(Math.random() * (maxSize - minSize + 1) + minSize);
     const comment = faker.lorem.text(3);
+    // const img = '';
 
     const docItem = {
         id: uuidv4(),
@@ -76,7 +78,8 @@ const createDocItem = () => {
         fileType,
         size,
         path: `D:/media/documents/${title.replaceAll(' ', '-')}.${fileType}`,
-        comment
+        comment,
+        // img
     }
 
     return docItem;

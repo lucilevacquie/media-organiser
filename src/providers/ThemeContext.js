@@ -7,8 +7,7 @@ import Footer from '../components/footer';
 
 //DATA
 import { getCategories, putCategories, getPlaylists, putPlaylists, getData, putData } from "../localStorage";
-export const easyAccessData =
-{
+export const easyAccessData = {
     audio:
     {
         id: 'audio',
@@ -49,7 +48,7 @@ export const easyAccessData =
         colour: 'gray-400',
         fileType: ['pdf', 'doc', 'html', 'txt']
     }
-}
+};
 
 const ThemeContext = createContext();
 export const useThemeContext = () => useContext(ThemeContext);
@@ -93,7 +92,7 @@ export default function ThemeProvider({ children }) {
         })
     };
 
-    //Edit a category
+    //Edit a category's name
     const editCategory = (id, items, newName) => {
         const existingCategory = categories[id];
         existingCategory.name = newName || existingCategory.name;
@@ -103,7 +102,7 @@ export default function ThemeProvider({ children }) {
             [existingCategory.id]: existingCategory
         })
     };
-    //Edit a playlist
+    //Edit a playlist's name
     const editPlaylist = (id, items, newName) => {
         const existingPlaylist = playlists[id];
         existingPlaylist.name = newName || existingPlaylist.name;
@@ -143,7 +142,6 @@ export default function ThemeProvider({ children }) {
             [existingPlaylist.id]: existingPlaylist
         })
     }
-
     //Edit comment from media files
     const editComment = (id, newComment) => {
         const existingMediaFile = dataList[id];
@@ -153,9 +151,34 @@ export default function ThemeProvider({ children }) {
             [existingMediaFile.id]: existingMediaFile
         })
     };
+    //Handle media file's image
+    const editImage = (id, newImage) => {
+        const existingMediaFile = dataList[id];
+        existingMediaFile.img = newImage;
+        setDataList({
+            ...dataList,
+            [existingMediaFile.id]: existingMediaFile
+        })
+    };
 
     //Available to the provider children
-    const values = { editComment, addItemToCategory, addItemToPlaylist, dataList, categories, playlists, isSearchOpen, setIsSearchOpen, createCategory, editCategory, deleteCategory, createPlaylist, editPlaylist, deletePlaylist };
+    const values = { 
+        editImage, 
+        editComment, 
+        addItemToCategory, 
+        addItemToPlaylist, 
+        dataList, 
+        categories, 
+        playlists, 
+        isSearchOpen, 
+        setIsSearchOpen, 
+        createCategory, 
+        editCategory, 
+        deleteCategory, 
+        createPlaylist, 
+        editPlaylist, 
+        deletePlaylist 
+    };
 
     return (
         <ThemeContext.Provider value={values}>
