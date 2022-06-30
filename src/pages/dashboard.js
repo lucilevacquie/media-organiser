@@ -28,6 +28,10 @@ const Dashboard = () => {
 
     const { dataList, categories, playlists, createCategory, createPlaylist } = useThemeContext();
 
+    console.log(categories)
+    console.log(playlists)
+    console.log(dataList)
+
     const onCreateCategoryName = (event) => {
         event.preventDefault();
         const fd = new FormData(event.target);
@@ -100,7 +104,7 @@ const Dashboard = () => {
                         {categories.length === 0 ?
                             <button onClick={() => onClickCreateCategory()} className='hidden mt-4 button font-bold md:block'>+ Create category</button>
                             :
-                            <div className='mt-4 grid grid-col-2 md:grid-cols-5 gap-4'>
+                            <div className='mt-4 grid grid-cols-2 md:grid-cols-5 gap-4'>
                                 {Object.values(categories).map(category => (
                                     <CategoryCard key={category.id} id={category.id} name={category.name} />
                                 ))}
@@ -120,7 +124,7 @@ const Dashboard = () => {
                         {playlists.length === 0 ?
                             <button onClick={() => onClickCreatePlaylist()} className='hidden mt-4 button md:block'>+ Create playlist</button>
                             :
-                            <div className='mt-4 grid grid-col-2 md:grid-cols-5 gap-4'>
+                            <div className='mt-4 grid grid-cols-2 md:grid-cols-5 gap-4'>
                                 {Object.values(playlists).map(playlist => (
                                     <PlaylistCard key={playlist.id} id={playlist.id} name={playlist.name} />
                                 ))}

@@ -11,20 +11,20 @@ const Card = ({ id, img, name, title, artist, genre, size, path, duration, comme
                     </div>
                     <div className='flex flex-col space-y-2'>
                         {name ?
-                            <p><span className='underline text-darkBlue'>Name:</span> {name}</p>
+                            <p><span className='underline text-darkBlue font-semibold'>Name:</span> {name}</p>
                             :
-                            <p><span className='underline text-darkBlue'>Title:</span> {title} by <span className='italic'>{artist}</span></p>
+                            <p><span className='underline text-darkBlue font-semibold'>Title:</span> {title} by <span className='italic'>{artist}</span></p>
                         }
 
                         {genre &&
-                            <p><span className='underline text-darkBlue'>Genre:</span> {genre}</p>
+                            <p><span className='underline text-darkBlue font-semibold'>Genre:</span> {genre}</p>
                         }
                         {duration &&
-                            <p><span className='underline text-darkBlue'>Duration:</span> {duration}min</p>
+                            <p><span className='underline text-darkBlue font-semibold'>Duration:</span> {duration}min</p>
                         }
-                        <p><span className='underline text-darkBlue'>Path:</span> {path}</p>
-                        <p><span className='underline text-darkBlue'>Size:</span> {size}kB</p>
-                        <p><span className='underline text-darkBlue'>Comment:</span> {comment}</p>
+                        <p><span className='underline text-darkBlue font-semibold'>Path:</span> {path}</p>
+                        <p><span className='underline text-darkBlue font-semibold'>Size:</span> {size}kB</p>
+                        <p><span className='underline text-darkBlue font-semibold'>Comment:</span> {comment}</p>
                     </div>
                 </div>
             </Link>

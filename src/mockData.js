@@ -8,7 +8,7 @@ const maxSize = 7;
 
 //AUDIO FILES
 
-const audioFileTypes = ['wav', 'mp3', 'flac', 'alac', 'dsd']
+const audioFileTypes = ['wav', 'mp3', 'flac', 'aac', 'wma']
 
 const createAudioItem = () => {
     const minDuration = 1;
@@ -86,13 +86,14 @@ const createDocItem = () => {
 }
 
 //VIDEOS
-const videoFileTypes = ['aac', 'mp4', 'avi'];
+const videoFileTypes = ['mov', 'mp4', 'avi', 'wmv', 'flv'];
 const minDuration = 1;
 const maxDuration = 10;
 
 const createVideoItem = () => {
-    const fileType = videoFileTypes[Math.floor(Math.random() * 4)];
+    const fileType = videoFileTypes[Math.floor(Math.random() * 5)];
     const title = faker.random.words();
+    const artist = `${faker.name.firstName()} ${faker.name.lastName()}`;
     const img = faker.image.image(640, 480, true);
     const size = Math.floor(Math.random() * (maxSize - minSize + 1) + minSize);
     const duration = Math.floor(Math.random() * (maxDuration - minDuration + 1) + minDuration);
@@ -101,6 +102,7 @@ const createVideoItem = () => {
     const videoItem = {
         id: uuidv4(),
         title,
+        artist,
         img,
         fileType,
         size,

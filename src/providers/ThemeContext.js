@@ -14,7 +14,7 @@ export const easyAccessData = {
         name: 'Audio',
         icon: 'boombox',
         colour: 'orange',
-        fileType: ['wav', 'mp3', 'aac', 'flac', 'alac', 'dsd']
+        fileType: ['wav', 'mp3', 'flac', 'aac', 'wma']
     },
     images:
     {
@@ -30,7 +30,7 @@ export const easyAccessData = {
         name: 'Videos',
         icon: 'camcorder',
         colour: 'lightBlue',
-        fileType: ['aac', 'mp4', 'wav', 'avi']
+        fileType: ['mov', 'mp4', 'avi', 'wmv', 'flv']
     },
     documents:
     {

@@ -88,14 +88,21 @@ const File = () => {
                         <div className='p-4 bg-white rounded-xl'>
                             <h3 className='mb-4 font-bold'>Media file's details</h3>
                             <div className='flex flex-col space-y-4'>
-                                {genre && <p><span className='underline text-darkBlue'>Genre:</span> {genre}</p>}
-                                <p><span className='underline text-darkBlue'>Type:</span> {fileType}</p>
-                                <p><span className='underline text-darkBlue'>Path:</span> {path}</p>
-                                <p><span className='underline text-darkBlue'>Comment:</span> {comment}</p>
+                                {genre && <p><span className='underline text-darkBlue font-semibold'>Genre:</span> {genre}</p>}
+                                <p><span className='underline text-darkBlue font-semibold'>Type:</span> {fileType}</p>
+                                <p><span className='underline text-darkBlue font-semibold'>Path:</span> {path}</p>
+                                <p><span className='underline text-darkBlue font-semibold'>Comment:</span> {comment}</p>
                             </div>
                         </div>
                         <div className='flex space-x-4'>
-                            <button onClick={() => setShowEditCommentModal(true)} className='mt-4 button md:w-1/3 '>Update comment</button>
+                            <button onClick={() => setShowEditCommentModal(true)} className='mt-4 flex space-x-2 items-center button'>
+                                <i class="fa-solid fa-pen-to-square"></i>
+                                <span>Update comment</span>
+                            </button>
+                            <button onClick={() => setShowEditCommentModal(true)} className='mt-4 flex space-x-2 items-center button'>
+                                <i class="fa-solid fa-trash"></i>
+                                <span>Delete comment</span>
+                            </button>
                         </div>
                     </div>
 
@@ -105,16 +112,21 @@ const File = () => {
                                 <img src={imageURL} alt={name} />
                             </div>
                             <div className='flex space-x-4'>
-                                <button onClick={() => setShowImageModal(true)} className='mt-4 button md:w-1/3 '>Change image</button>
-                                <button onClick={()=>setSelectedImage(null)} className='mt-4 button md:w-1/3 '>Remove image</button>
+                                <button onClick={() => setShowImageModal(true)} className='mt-4 flex space-x-2 items-center button'>
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                    <span>Update image</span>
+                                </button>
+                                <button onClick={()=>setSelectedImage(null)} className='mt-4 flex space-x-2 items-center button'>
+                                    <i class="fa-solid fa-trash"></i>
+                                    <span>Remove image</span>
+                                </button>
                             </div>
                         </div>
                         :
                         <div className='w-full h-40 bg-center rounded-xl flex justify-center items-center md:h-full' style={{ backgroundImage: `url(${Background})` }}>
-                            <button onClick={() => setShowImageModal(true)} className='py-2 px-4 text-center bg-white rounded-xl text-pink font-semibold'>Add image</button>
+                            <button onClick={() => setShowImageModal(true)} className='py-2 px-4 text-center bg-white rounded-xl text-pink font-semibold'>+ Add image</button>
                         </div>
                     }
-
                 </div>
             </div>
         </>
