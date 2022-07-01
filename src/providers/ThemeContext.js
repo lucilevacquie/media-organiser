@@ -42,11 +42,13 @@ export const easyAccessData = {
     }
 };
 
+//Set context provider
 const ThemeContext = createContext();
 export const useThemeContext = () => useContext(ThemeContext);
 
 export default function ThemeProvider({ children }) {
 
+    //Store and load the data from localStorage
     const [categories, setCategories] = useState(getCategories());
     useEffect(() => { putCategories(categories) }, [categories]);
 

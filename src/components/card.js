@@ -6,9 +6,11 @@ const Card = ({ id, img, name, title, artist, genre, size, path, duration, comme
         <div className='bg-white rounded-xl flex flex-col justify-between shadow-xl hover:shadow-2xl focus:shadow-2xl'>
             <Link to={`/file/${id}`} className='w-full text-left '>
                 <div className='p-4 flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0'>
-                    <div>
-                        <img src={img} alt={name} />
-                    </div>
+                    {!img == '' &&
+                        <div>
+                            <img src={img} alt={name} />
+                        </div>
+                    }
                     <div className='flex flex-col space-y-2'>
                         {name ?
                             <p><span className='underline text-darkBlue font-semibold'>Name:</span> {name}</p>

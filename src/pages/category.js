@@ -11,12 +11,15 @@ const Category = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
+    //States
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [selectedItems, setSelectedItems] = useState([]);
 
+    //From provider
     const { categories, dataList, editCategory, deleteCategory } = useThemeContext();
 
+    //Category's attributes
     const { name, items } = categories[id];
 
     const onEditCategoryName = event => {

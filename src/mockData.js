@@ -1,13 +1,13 @@
 import { faker } from '@faker-js/faker';
 
+//Auto generate random ID
 import { v4 as uuidv4 } from 'uuid';
 
+//Min and max for the file size function
 const minSize = 1;
 const maxSize = 7;
 
-
 //AUDIO FILES
-
 const audioFileTypes = ['wav', 'mp3', 'flac', 'aac', 'wma']
 
 const createAudioItem = () => {
@@ -21,7 +21,7 @@ const createAudioItem = () => {
     const size = Math.floor(Math.random() * (maxSize - minSize + 1) + minSize)
     const duration = Math.floor(Math.random() * (maxDuration - minDuration + 1) + minDuration);
     const comment = faker.lorem.text(3);
-    // const img = '';
+    const img = '';
 
     const audioItem = {
         id: uuidv4(),
@@ -33,9 +33,8 @@ const createAudioItem = () => {
         duration,
         path: `D:/media/audio/${genre.toLowerCase()}/${artist.toLowerCase()}/${artist.replaceAll(' ', '-')}_${title.replaceAll(' ', '-')}.${fileType}`,
         comment,
-        // img
+        img
     }
-
     return audioItem;
 }
 
@@ -58,7 +57,6 @@ const createImageItem = () => {
         path: `D:/media/images/${name.replaceAll(' ', '-')}.${fileType}`,
         comment
     }
-
     return imageItem;
 }
 
@@ -67,21 +65,20 @@ const docFileTypes = ['pdf', 'doc', 'html', 'txt']
 
 const createDocItem = () => {
     const fileType = docFileTypes[Math.floor(Math.random() * 4)];
-    const title = faker.random.words();
+    const name = faker.random.words();
     const size = Math.floor(Math.random() * (maxSize - minSize + 1) + minSize);
     const comment = faker.lorem.text(3);
-    // const img = '';
+    const img = '';
 
     const docItem = {
         id: uuidv4(),
-        title,
+        name,
         fileType,
         size,
-        path: `D:/media/documents/${title.replaceAll(' ', '-')}.${fileType}`,
+        path: `D:/media/documents/${name.replaceAll(' ', '-')}.${fileType}`,
         comment,
-        // img
+        img
     }
-
     return docItem;
 }
 
@@ -110,11 +107,12 @@ const createVideoItem = () => {
         path: `D:/media/videos/${title.replaceAll(' ', '-')}.${fileType}`,
         comment
     }
-
     return videoItem;
 }
 
+
 const data = () => {
+    //Number of file created for each family type
     const itemCount = 25;
 
     const dataObject = {}
@@ -135,9 +133,7 @@ const data = () => {
         const item = createVideoItem();
         dataObject[item.id] = item;
     }
-
     return dataObject;
-
 }
 
 export default data;

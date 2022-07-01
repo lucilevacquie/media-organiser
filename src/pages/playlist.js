@@ -14,10 +14,13 @@ const Playlist = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
+    //From provider
     const { playlists, dataList, editPlaylist, deletePlaylist } = useThemeContext();
 
+    //Playlist's atrributes
     const { name, items } = playlists[id];
 
+    //States
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);

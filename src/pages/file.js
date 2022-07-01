@@ -12,15 +12,19 @@ const File = () => {
 
     const { id } = useParams();
 
+    //From provider
     const { dataList, editComment, editImage, categories, editCategory } = useThemeContext();
 
+    //File's attributes
     const { name, title, artist, genre, path, comment, fileType, img } = dataList[id];
 
+    //States
     const [showEditCommentModal, setShowEditCommentModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showImageModal, setShowImageModal] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
 
+    //Store image URL
     const imageRef = useRef(null);
 
     const onEditComment = (event) => {
@@ -28,6 +32,11 @@ const File = () => {
         const fd = new FormData(event.target);
         editComment(id, fd.get('comment'));
         setShowEditCommentModal(false);
+    }
+
+    const onDeleteComment = () => {
+        editComment(id, '');
+        setShowDeleteModal(false);
     }
 
     const handleImage = (event) => {
@@ -39,7 +48,6 @@ const File = () => {
         if (!remove && !imageRef.current) {
             return;
         }
-
         editImage(id, remove ? '' : URL.createObjectURL(imageRef.current));
         imageRef.current = null
         setShowImageModal(false);
@@ -54,11 +62,6 @@ const File = () => {
         }
         console.log(newItems);
         editCategory(categoryID, newItems, null);
-    }
-
-    const onDeleteComment = () => {
-        editComment(id, '');
-        setShowDeleteModal(false);
     }
 
     return (

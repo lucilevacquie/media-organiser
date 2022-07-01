@@ -13,8 +13,12 @@ import { easyAccessData } from '../providers/ThemeContext';
 
 const Dashboard = () => {
 
+    //States
     const [showCreateModal, setShowCreateModal] = useState(false);
     const [modalType, setModalType] = useState('');
+
+    //From provider
+    const { dataList, categories, playlists, createCategory, createPlaylist } = useThemeContext();
 
     const onClickCreateCategory = () => {
         setShowCreateModal(true)
@@ -25,8 +29,6 @@ const Dashboard = () => {
         setShowCreateModal(true)
         setModalType('playlist')
     }
-
-    const { dataList, categories, playlists, createCategory, createPlaylist } = useThemeContext();
 
     const onCreateCategoryName = (event) => {
         event.preventDefault();

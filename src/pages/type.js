@@ -11,6 +11,7 @@ import { easyAccessData } from '../providers/ThemeContext';
 const Type = () => {
     const { id } = useParams();
 
+    //From provider
     const { dataList } = useThemeContext();
 
     const getFilesByTypes = () => {
