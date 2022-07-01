@@ -29,7 +29,7 @@ const FileCardSelect = ({ id, img, name, title, artist, genre, size, path, durat
             <div className='bg-lightBlue/20 rounded-b-xl p-4'>
                 <div className='flex space-x-2 items-center'>
                     <input type='checkbox' name='checkbox' onChange={(event) => onSelectItem(event, id)} />
-                    <label className='font-semibold'>Add to category</label>
+                    <label className='font-semibold'>Add to the list</label>
                 </div>
             </div>
         </div>

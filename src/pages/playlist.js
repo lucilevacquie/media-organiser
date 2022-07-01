@@ -141,14 +141,17 @@ const Playlist = () => {
                 </div>
                 {items.length === 0 ?
                     <div className='mt-8'>
-                        <h3>{name} is empty. Select the file you want to add to {name}.</h3>
+
                         <form onSubmit={onEditPlaylistItems}>
+                            <div className='flex justify-between items-center'>
+                                <h3>{name} is empty. Select the file you want to add to {name}.</h3>
+                                <button type='submit' className='mt-4 button md:w-1/3 '>Add to {name}</button>
+                            </div>
                             <div className='mt-4 grid md:grid-cols-2 gap-4'>
                                 {Object.values(getAudioFiles()).map(file => (
                                     <FileCardSelect onSelectItem={onSelectItem} key={file.id} id={file.id} img={file.img} title={file.title} artist={file.artist} genre={file.genre} name={file.name} size={file.size} path={file.path} duration={file.duration} comment={file.comment} type={file.fileType} />
                                 ))}
                             </div>
-                            <button type='submit' className='mt-4 button md:w-1/3 '>Add to {name}</button>
                         </form>
 
                     </div>
